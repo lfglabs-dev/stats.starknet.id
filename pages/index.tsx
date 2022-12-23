@@ -3,8 +3,6 @@ import type { NextPage } from "next";
 import { StatCard } from "../components/cards/StatCard";
 import styles from "../styles/Home.module.css";
 import { Chart } from "../components/charts/Chart";
-import * as data from '../mock/data.json';
-import * as tableData from "../mock/tableData.json";
 import { useMemo } from "react";
 import { formatValue } from "../utils/format";
 import { DataTable } from "../components/tables/DataTable";
@@ -29,13 +27,6 @@ const Home: NextPage = () => {
     domainRegistrations,
     expiredDomains,
     changeTemporality } = useMetrics();
-  const dataChart = useMemo(() => {
-    const parsed = data.map(d => {
-      return { day: new Date(d.day), amount: Number(d.aggregated_amount) }
-    })
-    const filtered = parsed.filter(p => p.amount > 0);
-    return filtered.map(f => [new Date(f.day).getTime(), Number(f.amount)])
-  }, [])
 
   const tableDataChart = useMemo(() => {
     const parsed = expiredDomains.map(d => {
@@ -84,8 +75,8 @@ const Home: NextPage = () => {
             <Chart
               title="Amount of domain renewals"
               series={[{
-                name:'Total user',
-                data: dataChart
+                name:'Domain renewed',
+                data: domainDataChart
               }]}
               formatter={(value) => formatValue(value)}
             />
