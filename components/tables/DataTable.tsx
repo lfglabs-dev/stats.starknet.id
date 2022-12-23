@@ -2,7 +2,7 @@ import { TableContainer, TableHead, TableRow, TableCell, TableBody, Table } from
 import { FC } from "react";
 import style from '../../styles/Table.module.css';
 
-interface DataInfo {
+export interface DataInfo {
   club: string;
   domain: string;
   expiration: Date;

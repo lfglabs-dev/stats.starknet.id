@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 import { Chart } from "../components/charts/Chart";
 import { useMemo } from "react";
 import { formatValue } from "../utils/format";
-import { DataTable } from "../components/tables/DataTable";
+import { DataInfo, DataTable } from "../components/tables/DataTable";
 import { TablePagination } from "../components/tables/TablePagination";
 import { FilterButton, Temporality } from "../components/buttons/FIlterButton";
 import { useMetrics } from "../hooks/useMetrics";
@@ -14,6 +14,7 @@ import { IdentitiesCreatedCard } from "../components/cards/IdentitiesCreatedCard
 import { UniqueAddressesCard } from "../components/cards/UniqueAddressesCard";
 import { orderBy } from "lodash";
 import { Club } from "../types/metrics";
+import { useTable } from "../hooks/useTable";
 
 const Home: NextPage = () => {
   const { 
@@ -35,6 +36,12 @@ const Home: NextPage = () => {
     })
     return parsed;
   }, [expiredDomains])
+
+  const {
+    data: tableData,
+    numberOfPages,
+    handleChangePage,
+  } = useTable<DataInfo>({ data: tableDataChart, limit: 10 })
 
   const domainDataChart = useMemo(() => {
     const ordered = orderBy(domainRegistrations, ['from'], ['asc'])
@@ -109,8 +116,8 @@ const Home: NextPage = () => {
 
         <div className={styles.column}>
           <h1 className={styles.title}>Recently expired</h1>
-          <DataTable data={tableDataChart} />
-          <TablePagination numberOfPages={3} />
+          <DataTable data={tableData} />
+          <TablePagination numberOfPages={numberOfPages} onClick={handleChangePage} />
         </div>
       </div>
     </div>
