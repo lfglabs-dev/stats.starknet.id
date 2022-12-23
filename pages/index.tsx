@@ -26,7 +26,8 @@ const Home: NextPage = () => {
     tenKClub,
     domainRegistrations,
     expiredDomains,
-    changeTemporality } = useMetrics();
+    changeTemporality
+   } = useMetrics();
 
   const tableDataChart = useMemo(() => {
     const parsed = expiredDomains.map(d => {
