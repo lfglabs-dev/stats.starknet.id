@@ -1,0 +1,33 @@
+.tableCellTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: "Montserrat-ExtraBold";
+  color: var(--brown);
+}
+
+.tableCellLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Montserrat-ExtraBold";
+  color: var(--soft-brown);
+  border-bottom: none;
+  cursor: pointer;
+}
+
+.tableContainer {
+  width: 70%;
+}
+
+@media (max-width: 768px) {
+  .tableContainer {
+    width: 100%;
+  }
+
+  .tableCellTitle {
+    font-size: 1.25rem;
+  }
+
+  .tiableCellLabel {
+    font-size: 1rem;
+  }
+}

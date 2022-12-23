@@ -1,0 +1,12 @@
+.toggleButtonGroup {
+  border-radius: 30px;
+}
+
+.toggleButton {
+  border: 1px solid var(--soft-brown);
+  background-color: var(--soft-brown);
+  border-radius: 30px;
+  padding: 0.5rem;
+  font-family: "Montserrat-ExtraBold";
+}
+
