@@ -30,18 +30,19 @@ const Home: NextPage = () => {
     changeTemporality
    } = useMetrics();
 
-  const tableDataChart = useMemo(() => {
+  const tableDataOrdered = useMemo(() => {
     const parsed = expiredDomains.map(d => {
       return { domain: d.domain, expiration: new Date(d.expiry * 1000), club: Club.TEN_K_CLUB}
     })
-    return parsed;
+    const ordered = orderBy(parsed, ['expiration'], ['desc'])
+    return ordered;
   }, [expiredDomains])
 
   const {
     data: tableData,
     numberOfPages,
     handleChangePage,
-  } = useTable<DataInfo>({ data: tableDataChart, limit: 10 })
+  } = useTable<DataInfo>({ data: tableDataOrdered, limit: 10 })
 
   const domainDataChart = useMemo(() => {
     const ordered = orderBy(domainRegistrations, ['from'], ['asc'])
