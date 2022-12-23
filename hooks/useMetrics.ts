@@ -14,7 +14,7 @@ export const useMetrics = () => {
     domainRenewals,
     temporalityRange,
     expiredDomains,
-    changeTemporality,
+    changeTemporality
   } = useContext(MetricsContext);
   return {
     temporality, 
@@ -28,6 +28,6 @@ export const useMetrics = () => {
     domainRenewals,
     temporalityRange,
     expiredDomains,
-    changeTemporality,
+    changeTemporality
   }
 }

@@ -31,7 +31,7 @@ export const MetricsContext = createContext<MetricsConfig>({
   domainRenewals: [],
   expiredDomains: [],
   changeTemporality: () => {},
-  temporalityRange: { since: 0, end: 0, segments: 1 },
+  temporalityRange: { since: 0, end: 0, segments: 1 }
 })
 
 export const MetricsProvider = ({ children }: { children: any }) => {
@@ -81,7 +81,7 @@ export const MetricsProvider = ({ children }: { children: any }) => {
     twoLetters,
     expiredDomains,
     setTemporality,
-    temporalityRange
+    temporalityRange,
   ]);
 
   return (

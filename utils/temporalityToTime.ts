@@ -18,7 +18,7 @@ export const temporalityRangeRecord = (): Record<Temporality, TemporalityRange> 
   return {
     [Temporality.WEEK]: {
       since: firstDayOfWeekTimestamp,
-      end: 0,
+      end: todayTimestamp,
       segments: 7,
     },
     [Temporality.MONTH]: {
