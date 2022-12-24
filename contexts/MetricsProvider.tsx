@@ -1,11 +1,10 @@
 import { createContext, useMemo, useState } from "react";
-import { Temporality } from "../components/buttons/FIlterButton";
 import { useGetClubMetric, useGetDomainRegistrations, useGetExpiredClubDomains } from "../hooks/metrics";
-import { Club, DomainExpired, DomainRegistration, TemporalityRange } from "../types/metrics";
-import { temporalityRangeRecord } from "../utils/temporalityToTime";
+import { Club, DomainExpired, DomainRegistration, Period, PeriodRange } from "../types/metrics";
+import { getPeriodInformation } from "../utils/period";
 
 interface MetricsConfig {
-  temporality: Temporality;
+  period: Period;
   oneLetter: number;
   twoLetters: number;
   threeLetters: number;
@@ -15,12 +14,12 @@ interface MetricsConfig {
   domainRegistrations: DomainRegistration[];
   domainRenewals: number[];
   expiredDomains: DomainExpired[];
-  changeTemporality: (temporality: Temporality) => void;
-  temporalityRange: TemporalityRange;
+  changePeriod: (period: Period) => void;
+  periodRange: PeriodRange;
 }
 
 export const MetricsContext = createContext<MetricsConfig>({
-  temporality: Temporality.MONTH,
+  period: Period.MONTH,
   oneLetter: 0,
   twoLetters: 0,
   threeLetters: 0,
@@ -30,32 +29,28 @@ export const MetricsContext = createContext<MetricsConfig>({
   domainRegistrations: [],
   domainRenewals: [],
   expiredDomains: [],
-  changeTemporality: () => {},
-  temporalityRange: { since: 0, end: 0, segments: 1 }
+  changePeriod: () => {},
+  periodRange: { since: 0, end: 0, segments: 1 }
 })
 
 export const MetricsProvider = ({ children }: { children: any }) => {
-  const [temporality, setTemporality] = useState<Temporality>(Temporality.MONTH);
+  const [period, setPeriod] = useState<Period>(Period.MONTH);
   const [domainRenewals, setDomainRenewals] = useState<number[]>([]);
 
-  const temporalityRecord = temporalityRangeRecord();
+  const periodRange = getPeriodInformation();
 
-  const temporalityRange = useMemo(() => {
-    return temporalityRecord[temporality];
-  }, [temporality, temporalityRecord])
-
-  const { clubNumber: oneLetter } = useGetClubMetric({ temporality, temporalityRange, club: Club.ONE_LETTER });
-  const { clubNumber: twoLetters } = useGetClubMetric({ temporality, temporalityRange, club: Club.TWO_LETTER });
-  const { clubNumber: threeLetters } = useGetClubMetric({ temporality, temporalityRange, club: Club.THREE_LETTER });
-  const { clubNumber: nineNineClub } = useGetClubMetric({ temporality, temporalityRange, club: Club.NINE_NINE });
-  const { clubNumber: tripleNineClub } = useGetClubMetric({ temporality, temporalityRange, club: Club.TRIPLE_NINE });
-  const { clubNumber: tenKClub } = useGetClubMetric({ temporality, temporalityRange, club: Club.TEN_K_CLUB });
-  const { domainRegistrations } = useGetDomainRegistrations({ temporality, temporalityRange });
+  const { clubNumber: oneLetter } = useGetClubMetric({ periodRange, club: Club.ONE_LETTER });
+  const { clubNumber: twoLetters } = useGetClubMetric({ periodRange, club: Club.TWO_LETTER });
+  const { clubNumber: threeLetters } = useGetClubMetric({ periodRange, club: Club.THREE_LETTER });
+  const { clubNumber: nineNineClub } = useGetClubMetric({ periodRange, club: Club.NINE_NINE });
+  const { clubNumber: tripleNineClub } = useGetClubMetric({ periodRange, club: Club.TRIPLE_NINE });
+  const { clubNumber: tenKClub } = useGetClubMetric({ periodRange, club: Club.TEN_K_CLUB });
+  const { domainRegistrations } = useGetDomainRegistrations({ periodRange });
   const { expiredDomains } = useGetExpiredClubDomains(Club.TEN_K_CLUB);
   
   const contextValues = useMemo(() => {
     return {
-      temporality,
+      period,
       oneLetter: oneLetter || 0,
       twoLetters: twoLetters || 0,
       threeLetters: threeLetters || 0,
@@ -65,8 +60,8 @@ export const MetricsProvider = ({ children }: { children: any }) => {
       domainRegistrations: domainRegistrations as [] || [],
       domainRenewals,
       expiredDomains: expiredDomains as [] || [],
-      changeTemporality: setTemporality,
-      temporalityRange,
+      changePeriod: setPeriod,
+      periodRange,
     }
   }, 
   [
@@ -75,13 +70,13 @@ export const MetricsProvider = ({ children }: { children: any }) => {
     nineNineClub, 
     tripleNineClub, 
     oneLetter, 
-    temporality, 
+    period, 
     tenKClub, 
     threeLetters, 
     twoLetters,
     expiredDomains,
-    setTemporality,
-    temporalityRange,
+    setPeriod,
+    periodRange,
   ]);
 
   return (

@@ -12,7 +12,7 @@ export type DomainRegistration = {
   count: number;
 }
 
-export type TemporalityRange = {
+export type PeriodRange = {
   since: number; // In seconds
   end: number; // In seconds
   segments: number;
@@ -25,4 +25,10 @@ export enum Club {
   NINE_NINE = '99',
   TRIPLE_NINE = '999',
   TEN_K_CLUB = '10k',
+}
+
+export enum Period {
+  WEEK = 'week',
+  MONTH = 'month',
+  YEAR = 'year',
 }
