@@ -7,18 +7,20 @@ import { useMemo } from "react";
 import { formatValue } from "../utils/format";
 import { DataInfo, DataTable } from "../components/tables/DataTable";
 import { TablePagination } from "../components/tables/TablePagination";
-import { FilterButton, Temporality } from "../components/buttons/FIlterButton";
+import { FilterButton } from "../components/buttons/FIlterButton";
 import { useMetrics } from "../hooks/useMetrics";
 import { DomainCreatedCard } from "../components/cards/DomainCreatedCard";
 import { IdentitiesCreatedCard } from "../components/cards/IdentitiesCreatedCard";
 import { UniqueAddressesCard } from "../components/cards/UniqueAddressesCard";
 import { orderBy } from "lodash";
-import { Club } from "../types/metrics";
+import { Club, Period } from "../types/metrics";
 import { useTable } from "../hooks/useTable";
+import { sumByPeriod } from "../utils/date";
+import { ApexOptions } from "apexcharts";
 
 const Home: NextPage = () => {
   const { 
-    temporality,
+    period,
     oneLetter,
     twoLetters,
     threeLetters,
@@ -27,7 +29,7 @@ const Home: NextPage = () => {
     tenKClub,
     domainRegistrations,
     expiredDomains,
-    changeTemporality
+    changePeriod
    } = useMetrics();
 
   const tableDataOrdered = useMemo(() => {
@@ -44,13 +46,17 @@ const Home: NextPage = () => {
     handleChangePage,
   } = useTable<DataInfo>({ data: tableDataOrdered, limit: 10 })
 
-  const domainDataChart = useMemo(() => {
-    const ordered = orderBy(domainRegistrations, ['from'], ['asc'])
-    const formatted = ordered.map(domainRegistration => [new Date(domainRegistration.from * 1000).getTime(), domainRegistration.count]);
-    return formatted;
-  }, [domainRegistrations])
+  const test = useMemo(() => {
+    return sumByPeriod(domainRegistrations, period);
+  }, [domainRegistrations, period])
 
-  const filterValues = [Temporality.WEEK, Temporality.MONTH, Temporality.YEAR];
+  const domainDataChart = useMemo(() => {
+    const ordered = orderBy(test, ['from'], ['asc'])
+    const formatted = ordered.map(domainRegistration => [domainRegistration.firstDayOfPeriod.getTime() , domainRegistration.total]);
+    return formatted;
+  }, [test])
+
+  const filterValues = [Period.WEEK, Period.MONTH, Period.YEAR];
 
   return (
     <div className={styles.column}>
@@ -64,7 +70,7 @@ const Home: NextPage = () => {
         <div className={styles.column}>
           <div className={styles.row}>
             <div className="flex justify-center w-full">
-              <FilterButton value={temporality} possibleValues={filterValues} onChange={changeTemporality}/>
+              <FilterButton value={period} possibleValues={filterValues} onChange={changePeriod}/>
             </div>
           </div>  
           <div className={styles.row}>
