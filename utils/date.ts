@@ -25,15 +25,15 @@ export const sumByPeriod = (data: DomainRegistration[], period: Period) => {
     // Get the period number for the element's date
     let periodNumber;
     switch (period) {
-      case Period.WEEK:
+      case Period.WEEKLY:
         periodNumber = getWeekNumber(element.date);
         firstDayOfPeriod = getFirstDayOfWeek({ week: periodNumber, year: element.date.getFullYear()})
         break;
-      case Period.MONTH:
+      case Period.MONTHLY:
         periodNumber = element.date.getMonth();
         firstDayOfPeriod = new Date(LocalDate.of(element.date.getFullYear(),periodNumber + 1,1).toString());
         break;
-      case Period.YEAR:
+      case Period.YEARLY:
         periodNumber = element.date.getFullYear();
         firstDayOfPeriod = periodNumber === 2022 ? new Date(LocalDate.of(2022, 12 ,7).toString()) : new Date(LocalDate.of(periodNumber, 1 ,1).toString());
         break;
@@ -70,19 +70,19 @@ export const generateDate = (period: Period, value: number) => {
 
   // Set the year, month, or week based on the period and value
   switch (period) {
-    case Period.WEEK:
+    case Period.WEEKLY:
       // Set the date to the first day of the week
       date.setDate(date.getDate() - date.getDay());
       // Add the number of weeks to the date
       date.setDate(date.getDate() + (value - 1) * 7);
       break;
-    case Period.MONTH:
+    case Period.MONTHLY:
       // Set the month to the specified value
       date.setMonth(value);
       // Set the date to the first day of the month
       date.setDate(1);
       break;
-    case Period.YEAR:
+    case Period.YEARLY:
       // Set the year to the specified value
       date.setFullYear(value);
       // Set the month to January

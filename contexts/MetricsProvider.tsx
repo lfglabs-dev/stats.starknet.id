@@ -20,7 +20,7 @@ interface MetricsConfig {
 }
 
 export const MetricsContext = createContext<MetricsConfig>({
-  period: Period.MONTH,
+  period: Period.MONTHLY,
   oneLetter: 0,
   twoLetters: 0,
   threeLetters: 0,
@@ -36,7 +36,7 @@ export const MetricsContext = createContext<MetricsConfig>({
 })
 
 export const MetricsProvider = ({ children }: { children: any }) => {
-  const [period, setPeriod] = useState<Period>(Period.MONTH);
+  const [period, setPeriod] = useState<Period>(Period.MONTHLY);
   const [domainRenewals, setDomainRenewals] = useState<number[]>([]);
 
   const periodRangeForCharts = getPeriodInformation();

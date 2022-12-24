@@ -43,17 +43,17 @@ export const getPeriodInformationForStats = (): Record<Period, PeriodRange> => {
       end: todayTimestamp,
       segments,
     },
-    [Period.WEEK]: {
+    [Period.WEEKLY]: {
       since: originTimestamp > todayMinusOneWeekTimestamp ? originTimestamp : todayMinusOneWeekTimestamp,
       end: todayTimestamp,
       segments,
     },
-    [Period.MONTH]: {
+    [Period.MONTHLY]: {
       since: originTimestamp > todayMinusOneMonthTimestamp ? originTimestamp : todayMinusOneMonthTimestamp,
       end: todayTimestamp,
       segments,
     },
-    [Period.YEAR]: {
+    [Period.YEARLY]: {
       since: originTimestamp > todayMinusOneYearTimestamp ? originTimestamp : todayMinusOneYearTimestamp,
       end: todayTimestamp,
       segments,

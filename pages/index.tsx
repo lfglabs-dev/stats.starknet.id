@@ -57,7 +57,7 @@ const Home: NextPage = () => {
     return formatted;
   }, [domainRegistrationSumByPeriod])
 
-  const filterValues = [Period.DAILY, Period.WEEK, Period.MONTH, Period.YEAR];
+  const filterValues = [Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY];
 
   return (
     <div className={styles.column}>
