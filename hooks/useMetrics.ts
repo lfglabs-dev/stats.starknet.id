@@ -12,8 +12,9 @@ export const useMetrics = () => {
     tenKClub,
     domainRegistrations,
     domainRenewals,
-    periodRange,
+    periodRangeForCharts: periodRange,
     expiredDomains,
+    currentPeriodRange,
     changePeriod
   } = useContext(MetricsContext);
   return {
@@ -28,6 +29,7 @@ export const useMetrics = () => {
     domainRenewals,
     periodRange,
     expiredDomains,
+    currentPeriodRange,
     changePeriod
   }
 }

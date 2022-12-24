@@ -1,20 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import { Club, DomainCreatedResponse, DomainExpired, DomainRegistration, PeriodRange } from "../types/metrics";
+import { Club, DomainCreatedResponse, DomainExpired, DomainRegistration, Period, PeriodRange } from "../types/metrics";
 import { fetchApi, methods } from "./fetchApi";
 
 interface UseGetMetricsDataProps {
   periodRange: PeriodRange
+  period: Period;
 }
 
 interface UseGetClubMetricsDataProps extends UseGetMetricsDataProps {
   club: Club;
 }
 
-export const useGetDomains = ({ periodRange } : UseGetMetricsDataProps) => {
+export const useGetDomains = ({ periodRange, period } : UseGetMetricsDataProps) => {
   const uri = '/count_domains';
 
   const query = useQuery<DomainCreatedResponse, Error>({
-    queryKey: [uri, periodRange],
+    queryKey: [uri, period],
     queryFn: async (): Promise<DomainCreatedResponse> => {
       return fetchApi({
         uri: `${uri}?since=${periodRange.since}`,
@@ -25,11 +26,11 @@ export const useGetDomains = ({ periodRange } : UseGetMetricsDataProps) => {
   return { ...query, domainsCreated: query.data?.count };
 }
 
-export const useGetIdentities = ({ periodRange } : UseGetMetricsDataProps) => {
+export const useGetIdentities = ({ periodRange, period } : UseGetMetricsDataProps) => {
   const uri = '/count_ids';
 
   const query = useQuery<DomainCreatedResponse, Error>({
-    queryKey: [uri, periodRange],
+    queryKey: [uri, period],
     queryFn: async (): Promise<DomainCreatedResponse> => {
       return fetchApi({
         uri: `${uri}?since=${periodRange.since}`,
@@ -40,11 +41,11 @@ export const useGetIdentities = ({ periodRange } : UseGetMetricsDataProps) => {
   return { ...query, identitiesCreated: query.data?.count };
 }
 
-export const useGetUniqueAddresses = ({ periodRange } : UseGetMetricsDataProps) => {
+export const useGetUniqueAddresses = ({ periodRange, period } : UseGetMetricsDataProps) => {
   const uri = '/count_addrs';
 
   const query = useQuery<DomainCreatedResponse, Error>({
-    queryKey: [uri, periodRange],
+    queryKey: [uri, period],
     queryFn: async (): Promise<DomainCreatedResponse> => {
       return fetchApi({
         uri: `${uri}?since=${periodRange.since}`,
@@ -55,11 +56,11 @@ export const useGetUniqueAddresses = ({ periodRange } : UseGetMetricsDataProps) 
   return { ...query, uniqueAddresses: query.data?.count };
 }
 
-export const useGetClubMetric = ({ periodRange, club } : UseGetClubMetricsDataProps) => {
+export const useGetClubMetric = ({ periodRange, club, period } : UseGetClubMetricsDataProps) => {
   const uri = '/count_club_domains';
 
   const query = useQuery<DomainCreatedResponse, Error>({
-    queryKey: [uri, periodRange],
+    queryKey: [uri, period],
     queryFn: async (): Promise<DomainCreatedResponse> => {
       return fetchApi({
         uri: `${uri}?since=${periodRange.since}&club=${club}`,
