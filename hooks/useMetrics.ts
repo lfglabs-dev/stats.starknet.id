@@ -3,7 +3,7 @@ import { MetricsContext } from "../contexts/MetricsProvider"
 
 export const useMetrics = () => {
   const { 
-    temporality,
+    period,
     oneLetter,
     twoLetters,
     threeLetters,
@@ -12,12 +12,13 @@ export const useMetrics = () => {
     tenKClub,
     domainRegistrations,
     domainRenewals,
-    temporalityRange,
+    periodRangeForCharts: periodRange,
     expiredDomains,
-    changeTemporality
+    currentPeriodRange,
+    changePeriod
   } = useContext(MetricsContext);
   return {
-    temporality, 
+    period, 
     oneLetter,
     twoLetters,
     threeLetters,
@@ -26,8 +27,9 @@ export const useMetrics = () => {
     tenKClub,
     domainRegistrations,
     domainRenewals,
-    temporalityRange,
+    periodRange,
     expiredDomains,
-    changeTemporality
+    currentPeriodRange,
+    changePeriod
   }
 }

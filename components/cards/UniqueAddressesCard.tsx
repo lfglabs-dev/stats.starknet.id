@@ -4,8 +4,8 @@ import { useMetrics } from "../../hooks/useMetrics";
 import { StatCard } from "./StatCard";
 
 export const UniqueAddressesCard: FC = () => {
-  const { temporality, temporalityRange } = useMetrics();
-  const { uniqueAddresses, isLoading } = useGetUniqueAddresses({ temporality, temporalityRange });
+  const { currentPeriodRange, period } = useMetrics();
+  const { uniqueAddresses, isLoading } = useGetUniqueAddresses({ periodRange: currentPeriodRange, period });
 
   return (
     <StatCard title="Unique addresses" statValue={uniqueAddresses || 0} isLoading={isLoading} />

@@ -1,17 +1,13 @@
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import { FC } from "react";
 import style from "../../styles/FilterButton.module.css";
+import { Period } from "../../types/metrics";
 
-export enum Temporality {
-  WEEK = 'Week',
-  MONTH = 'Month',
-  YEAR = 'Year',
-}
 
 interface FilterButtonProps {
-  value: Temporality;
-  possibleValues: Temporality[];
-  onChange: (value: Temporality) => void;
+  value: Period;
+  possibleValues: Period[];
+  onChange: (value: Period) => void;
 }
 
 export const FilterButton: FC<FilterButtonProps> = ({ value, possibleValues, onChange }) => {
@@ -20,8 +16,8 @@ export const FilterButton: FC<FilterButtonProps> = ({ value, possibleValues, onC
       color="primary"
       value={value}
       exclusive
-      onChange={(_, value) => onChange(value as Temporality)}
-      aria-label="Temporality"
+      onChange={(_, value) => onChange(value as Period)}
+      aria-label="Period"
       className={style.toggleButtonGroup}
     >
       {possibleValues.map((value) => (

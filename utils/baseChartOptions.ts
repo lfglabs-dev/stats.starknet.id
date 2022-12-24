@@ -31,12 +31,12 @@ export const baseChartOptions = {
     labels: {
       style: {
         colors: 'black',
-        fontWeight: 700,
-        fontSize: '14px'
+        fontWeight: 600,
+        fontSize: '13px'
       },
       datetimeFormatter: {
         year: 'yyyy',
-        month: 'MMM',
+        month: 'd MMM',
         day: 'd MMM',
         hour: 'HH:mm'
       }
@@ -46,7 +46,7 @@ export const baseChartOptions = {
     },
     axisTicks: {
       show: false
-    }
+    },
   },
   yaxis: {
     labels: {
