@@ -37,7 +37,7 @@ export const baseChartOptions = {
       datetimeFormatter: {
         year: 'yyyy',
         month: 'd MMM',
-        day: 'd MMM yy',
+        day: 'd MMM',
         hour: 'HH:mm'
       }
     },

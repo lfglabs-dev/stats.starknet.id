@@ -28,6 +28,7 @@ export enum Club {
 }
 
 export enum Period {
+  DAILY = 'daily',
   WEEK = 'week',
   MONTH = 'month',
   YEAR = 'year',

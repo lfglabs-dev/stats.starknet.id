@@ -23,12 +23,13 @@ export const getPeriodInformationForStats = (): Record<Period, PeriodRange> => {
   const origin = LocalDate.of(2022, 12, 7);
   const originTimestamp = new Date('2022-12-07').getTime() / 1000;
 
+  const todayMinusOneDay = today.minusDays(1);
   const todayMinusOneWeek = today.minusWeeks(1);
   const todayMinusOneMonth = today.minusMonths(1);
   const todayMinusOneYear = today.minusYears(1);
 
+  const todayMinusOneDayTimestamp = new Date(todayMinusOneDay.toString()).getTime() / 1000;
   const todayMinusOneWeekTimestamp = new Date(todayMinusOneWeek.toString()).getTime() / 1000;
-  console.log(todayMinusOneWeekTimestamp);
   const todayMinusOneMonthTimestamp = new Date(todayMinusOneMonth.toString()).getTime() / 1000;
   const todayMinusOneYearTimestamp = new Date(todayMinusOneYear.toString()).getTime() / 1000;
 
@@ -37,6 +38,11 @@ export const getPeriodInformationForStats = (): Record<Period, PeriodRange> => {
   const todayTimestamp = new Date(today.toString()).getTime() / 1000;
 
   return {
+    [Period.DAILY]: {
+      since: todayMinusOneDayTimestamp,
+      end: todayTimestamp,
+      segments,
+    },
     [Period.WEEK]: {
       since: originTimestamp > todayMinusOneWeekTimestamp ? originTimestamp : todayMinusOneWeekTimestamp,
       end: todayTimestamp,

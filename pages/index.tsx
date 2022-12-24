@@ -16,7 +16,6 @@ import { orderBy } from "lodash";
 import { Club, Period } from "../types/metrics";
 import { useTable } from "../hooks/useTable";
 import { sumByPeriod } from "../utils/date";
-import { ApexOptions } from "apexcharts";
 
 const Home: NextPage = () => {
   const { 
@@ -46,17 +45,19 @@ const Home: NextPage = () => {
     handleChangePage,
   } = useTable<DataInfo>({ data: tableDataOrdered, limit: 10 })
 
-  const test = useMemo(() => {
-    return sumByPeriod(domainRegistrations, period);
+  const domainRegistrationSumByPeriod = useMemo(() => {
+    return period === Period.DAILY ? domainRegistrations.map(domain => {
+      return { period: 1, firstDayOfPeriod: new Date(domain.from * 1000), total: domain.count };
+    }) : sumByPeriod(domainRegistrations, period);
   }, [domainRegistrations, period])
 
   const domainDataChart = useMemo(() => {
-    const ordered = orderBy(test, ['from'], ['asc'])
+    const ordered = orderBy(domainRegistrationSumByPeriod, ['from'], ['asc'])
     const formatted = ordered.map(domainRegistration => [domainRegistration.firstDayOfPeriod.getTime() , domainRegistration.total]);
     return formatted;
-  }, [test])
+  }, [domainRegistrationSumByPeriod])
 
-  const filterValues = [Period.WEEK, Period.MONTH, Period.YEAR];
+  const filterValues = [Period.DAILY, Period.WEEK, Period.MONTH, Period.YEAR];
 
   return (
     <div className={styles.column}>
