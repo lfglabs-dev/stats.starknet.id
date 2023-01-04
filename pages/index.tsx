@@ -9,9 +9,6 @@ import { DataInfo, DataTable } from "../components/tables/DataTable";
 import { TablePagination } from "../components/tables/TablePagination";
 import { FilterButton } from "../components/buttons/FIlterButton";
 import { useMetrics } from "../hooks/useMetrics";
-import { DomainCreatedCard } from "../components/cards/DomainCreatedCard";
-import { IdentitiesCreatedCard } from "../components/cards/IdentitiesCreatedCard";
-import { UniqueAddressesCard } from "../components/cards/UniqueAddressesCard";
 import { orderBy } from "lodash";
 import { Club, Period } from "../types/metrics";
 import { useTable } from "../hooks/useTable";
@@ -20,6 +17,9 @@ import { domainCountToDataChart } from "../utils/domainCountToDataChart";
 const Home: NextPage = () => {
   const { 
     period,
+    domainsCreated,
+    identitiesCreated,
+    uniqueAddresses,
     oneLetter,
     twoLetters,
     threeLetters,
@@ -72,15 +72,15 @@ const Home: NextPage = () => {
             </div>
           </div>  
           <div className={styles.row}>
-            <DomainCreatedCard />
-            <IdentitiesCreatedCard />
-            <UniqueAddressesCard />
+            <StatCard title="Domains created" statValue={domainsCreated} />
+            <StatCard title="Identities created" statValue={identitiesCreated} />
+            <StatCard title="Unique addresses" statValue={uniqueAddresses} />
           </div>
           <div className={styles.row}>
             <Chart
               title="Amount of domain registrations"
               series={[{
-                name:'Domain created',
+                name:'Domains created',
                 data: domainDataChart
               }]}
               formatter={(value) => formatValue(value)}
