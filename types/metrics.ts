@@ -7,9 +7,14 @@ export type DomainExpired = {
   expiry: number;
 }
 
-export type DomainRegistration = {
+export type DomainCount = {
   from: number;
   count: number;
+}
+
+export type DomainPerClub = {
+  club: string;
+  count: number | null;
 }
 
 export type PeriodRange = {

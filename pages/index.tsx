@@ -9,17 +9,17 @@ import { DataInfo, DataTable } from "../components/tables/DataTable";
 import { TablePagination } from "../components/tables/TablePagination";
 import { FilterButton } from "../components/buttons/FIlterButton";
 import { useMetrics } from "../hooks/useMetrics";
-import { DomainCreatedCard } from "../components/cards/DomainCreatedCard";
-import { IdentitiesCreatedCard } from "../components/cards/IdentitiesCreatedCard";
-import { UniqueAddressesCard } from "../components/cards/UniqueAddressesCard";
 import { orderBy } from "lodash";
 import { Club, Period } from "../types/metrics";
 import { useTable } from "../hooks/useTable";
-import { sumByPeriod } from "../utils/date";
+import { domainCountToDataChart } from "../utils/domainCountToDataChart";
 
 const Home: NextPage = () => {
   const { 
     period,
+    domainsCreated,
+    identitiesCreated,
+    uniqueAddresses,
     oneLetter,
     twoLetters,
     threeLetters,
@@ -28,6 +28,7 @@ const Home: NextPage = () => {
     tenKClub,
     domainRegistrations,
     expiredDomains,
+    domainRenewals,
     changePeriod
    } = useMetrics();
 
@@ -45,17 +46,13 @@ const Home: NextPage = () => {
     handleChangePage,
   } = useTable<DataInfo>({ data: tableDataOrdered, limit: 10 })
 
-  const domainRegistrationSumByPeriod = useMemo(() => {
-    return period === Period.DAILY ? domainRegistrations.map(domain => {
-      return { period: 1, firstDayOfPeriod: new Date(domain.from * 1000), total: domain.count };
-    }) : sumByPeriod(domainRegistrations, period);
+  const domainDataChart = useMemo(() => {
+    return domainCountToDataChart(domainRegistrations, period);
   }, [domainRegistrations, period])
 
-  const domainDataChart = useMemo(() => {
-    const ordered = orderBy(domainRegistrationSumByPeriod, ['from'], ['asc'])
-    const formatted = ordered.map(domainRegistration => [domainRegistration.firstDayOfPeriod.getTime() , domainRegistration.total]);
-    return formatted;
-  }, [domainRegistrationSumByPeriod])
+  const domainRenewalDataChart = useMemo(() => {
+    return domainCountToDataChart(domainRenewals, period);
+  }, [domainRenewals, period])
 
   const filterValues = [Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY];
 
@@ -75,15 +72,15 @@ const Home: NextPage = () => {
             </div>
           </div>  
           <div className={styles.row}>
-            <DomainCreatedCard />
-            <IdentitiesCreatedCard />
-            <UniqueAddressesCard />
+            <StatCard title="Domains created" statValue={domainsCreated} />
+            <StatCard title="Identities created" statValue={identitiesCreated} />
+            <StatCard title="Unique addresses" statValue={uniqueAddresses} />
           </div>
           <div className={styles.row}>
             <Chart
               title="Amount of domain registrations"
               series={[{
-                name:'Domain created',
+                name:'Domains created',
                 data: domainDataChart
               }]}
               formatter={(value) => formatValue(value)}
@@ -92,7 +89,7 @@ const Home: NextPage = () => {
               title="Amount of domain renewals"
               series={[{
                 name:'Domain renewed',
-                data: domainDataChart
+                data: domainRenewalDataChart
               }]}
               formatter={(value) => formatValue(value)}
             />
