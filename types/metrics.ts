@@ -7,7 +7,7 @@ export type DomainExpired = {
   expiry: number;
 }
 
-export type DomainRegistration = {
+export type DomainCount = {
   from: number;
   count: number;
 }
