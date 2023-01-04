@@ -12,6 +12,11 @@ export type DomainRegistration = {
   count: number;
 }
 
+export type DomainPerClub = {
+  club: string;
+  count: number | null;
+}
+
 export type PeriodRange = {
   since: number; // In seconds
   end: number; // In seconds
