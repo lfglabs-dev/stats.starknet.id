@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Club, DomainCreatedResponse, DomainExpired, DomainPerClub, DomainRegistration, Period, PeriodRange } from "../types/metrics";
+import { Club, DomainCreatedResponse, DomainExpired, DomainPerClub, DomainCount, Period, PeriodRange } from "../types/metrics";
 import { fetchApi, methods } from "./fetchApi";
 
 interface UseGetMetricsDataProps {
@@ -85,9 +85,9 @@ export const useGetExpiredClubDomains = (club: Club) => {
 export const useGetDomainRegistrations = ({ periodRange } : UseGetMetricsDataProps) => {
   const uri = '/count_created';
 
-  const query = useQuery<DomainRegistration[], Error>({
+  const query = useQuery<DomainCount[], Error>({
     queryKey: [uri, periodRange],
-    queryFn: async (): Promise<DomainRegistration[]> => {
+    queryFn: async (): Promise<DomainCount[]> => {
       return fetchApi({
         uri: `${uri}?begin=${periodRange.since}&end=${periodRange.end}&segments=${periodRange.segments}`,
         method: methods.GET,
@@ -97,4 +97,18 @@ export const useGetDomainRegistrations = ({ periodRange } : UseGetMetricsDataPro
   return { ...query, domainRegistrations: query.data };
 }
 
+export const useGetDomainRenewals = ({ periodRange } : UseGetMetricsDataProps) => {
+  const uri = '/count_renewed';
+
+  const query = useQuery<DomainCount[], Error>({
+    queryKey: [uri, periodRange],
+    queryFn: async (): Promise<DomainCount[]> => {
+      return fetchApi({
+        uri: `${uri}?begin=${periodRange.since}&end=${periodRange.end}&segments=${periodRange.segments}`,
+        method: methods.GET,
+      });
+    },
+  });
+  return { ...query, domainRenewed: query.data };
+}
 

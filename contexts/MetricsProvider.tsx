@@ -1,6 +1,6 @@
 import { createContext, useMemo, useState } from "react";
-import { useGetClubMetric, useGetDomainRegistrations, useGetExpiredClubDomains } from "../hooks/metrics";
-import { Club, DomainExpired, DomainRegistration, Period, PeriodRange } from "../types/metrics";
+import { useGetClubMetric, useGetDomainRegistrations, useGetDomainRenewals, useGetExpiredClubDomains } from "../hooks/metrics";
+import { Club, DomainExpired, DomainCount, Period, PeriodRange } from "../types/metrics";
 import { dataToCountPerClub } from "../utils/dataToCountPerClub";
 import { getPeriodInformation, getPeriodInformationForStats } from "../utils/period";
 
@@ -12,8 +12,8 @@ interface MetricsConfig {
   nineNineClub: number;
   tripleNineClub: number;
   tenKClub: number;
-  domainRegistrations: DomainRegistration[];
-  domainRenewals: number[];
+  domainRegistrations: DomainCount[];
+  domainRenewals: DomainCount[];
   expiredDomains: DomainExpired[];
   changePeriod: (period: Period) => void;
   periodRangeForCharts: PeriodRange;
@@ -38,7 +38,6 @@ export const MetricsContext = createContext<MetricsConfig>({
 
 export const MetricsProvider = ({ children }: { children: any }) => {
   const [period, setPeriod] = useState<Period>(Period.MONTHLY);
-  const [domainRenewals, setDomainRenewals] = useState<number[]>([]);
 
   const periodRangeForCharts = getPeriodInformation();
   const periodRangeForStats = getPeriodInformationForStats();
@@ -50,6 +49,7 @@ export const MetricsProvider = ({ children }: { children: any }) => {
   const { countPerClub } = useGetClubMetric({ periodRange: currentPeriodRange, period });
   const { domainRegistrations } = useGetDomainRegistrations({ periodRange: periodRangeForCharts, period });
   const { expiredDomains } = useGetExpiredClubDomains(Club.TEN_K_CLUB);
+  const { domainRenewed } = useGetDomainRenewals({ periodRange: periodRangeForCharts, period });
 
   const countPerClubMap = useMemo(() => {
     let initialData = {
@@ -74,14 +74,14 @@ export const MetricsProvider = ({ children }: { children: any }) => {
       tripleNineClub: countPerClubMap.tripleNineClub,
       tenKClub: countPerClubMap.tenKClub,
       domainRegistrations: domainRegistrations as [] || [],
-      domainRenewals,
+      domainRenewals: domainRenewed as [] || [],
       expiredDomains: expiredDomains as [] || [],
       changePeriod: setPeriod,
       periodRangeForCharts,
       currentPeriodRange,
     }
   }, 
-  [period, countPerClubMap.oneLetter, countPerClubMap.twoLetters, countPerClubMap.threeLetters, countPerClubMap.nineNineClub, countPerClubMap.tripleNineClub, countPerClubMap.tenKClub, domainRegistrations, domainRenewals, expiredDomains, periodRangeForCharts, currentPeriodRange]);
+  [period, countPerClubMap.oneLetter, countPerClubMap.twoLetters, countPerClubMap.threeLetters, countPerClubMap.nineNineClub, countPerClubMap.tripleNineClub, countPerClubMap.tenKClub, domainRegistrations, domainRenewed, expiredDomains, periodRangeForCharts, currentPeriodRange]);
 
   return (
     <MetricsContext.Provider value={contextValues}>
