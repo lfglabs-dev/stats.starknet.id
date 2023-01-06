@@ -4,7 +4,7 @@ export type DomainCreatedResponse = {
 
 export type DomainExpired = {
   domain: string;
-  expiry: number;
+  club: string;
 }
 
 export type DomainCount = {

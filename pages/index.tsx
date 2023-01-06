@@ -13,6 +13,7 @@ import { orderBy } from "lodash";
 import { Club, Period } from "../types/metrics";
 import { useTable } from "../hooks/useTable";
 import { domainCountToDataChart } from "../utils/domainCountToDataChart";
+import { clubToString } from "../utils/clubToString";
 
 const Home: NextPage = () => {
   const { 
@@ -33,11 +34,10 @@ const Home: NextPage = () => {
    } = useMetrics();
 
   const tableDataOrdered = useMemo(() => {
-    const parsed = expiredDomains.map(d => {
-      return { domain: d.domain, expiration: new Date(d.expiry * 1000), club: Club.TEN_K_CLUB}
-    })
-    const ordered = orderBy(parsed, ['expiration'], ['desc'])
-    return ordered;
+    return expiredDomains.map(domain => ({
+      ...domain,
+      club: clubToString(domain.club as Club)
+    }))
   }, [expiredDomains])
 
   const {

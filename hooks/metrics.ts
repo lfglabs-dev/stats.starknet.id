@@ -67,14 +67,14 @@ export const useGetClubMetric = ({ periodRange, period } : UseGetMetricsDataProp
   return { ...query, countPerClub: query.data };
 }
 
-export const useGetExpiredClubDomains = (club: Club) => {
+export const useGetExpiredClubDomains = () => {
   const uri = '/expired_club_domains';
 
   const query = useQuery<DomainExpired[], Error>({
-    queryKey: [uri, club],
+    queryKey: [uri],
     queryFn: async (): Promise<DomainExpired[]> => {
       return fetchApi({
-        uri: `${uri}?club=${club}`,
+        uri: `${uri}`,
         method: methods.GET,
       });
     },

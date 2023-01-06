@@ -57,7 +57,7 @@ export const MetricsProvider = ({ children }: { children: any }) => {
   const { uniqueAddresses } = useGetUniqueAddresses({ periodRange: currentPeriodRange, period });
   const { countPerClub } = useGetClubMetric({ periodRange: currentPeriodRange, period });
   const { domainRegistrations } = useGetDomainRegistrations({ periodRange: periodRangeForCharts, period });
-  const { expiredDomains } = useGetExpiredClubDomains(Club.TEN_K_CLUB);
+  const { expiredDomains } = useGetExpiredClubDomains();
   const { domainRenewed } = useGetDomainRenewals({ periodRange: periodRangeForCharts, period });
 
   const countPerClubMap = useMemo(() => {

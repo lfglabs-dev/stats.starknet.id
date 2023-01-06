@@ -5,7 +5,6 @@ import style from '../../styles/Table.module.css';
 export interface DataInfo {
   club: string;
   domain: string;
-  expiration: Date;
 }
 
 interface TableProps {
@@ -19,7 +18,6 @@ export const DataTable: FC<TableProps> = ({ data }) => {
         <TableHead>
           <TableRow>
             <TableCell align="center" className={style.tableCellTitle}>Domain</TableCell>
-            <TableCell align="center" className={style.tableCellTitle}>Expiration</TableCell>
             <TableCell align="center" className={style.tableCellTitle}>Club</TableCell>
           </TableRow>
         </TableHead>
@@ -32,7 +30,6 @@ export const DataTable: FC<TableProps> = ({ data }) => {
               <TableCell align="center" component="th" scope="row" className={style.tableCellLabel}>
                 {row.domain}
               </TableCell>
-              <TableCell align="center" className={style.tableCellLabel}>{row.expiration.toLocaleDateString()}</TableCell>
               <TableCell align="center" className={style.tableCellLabel}>{row.club}</TableCell>
             </TableRow>
           ))}
