@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.5",
+    "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.5",
     "@js-joda/core": "^5.4.2",
     "@mui/material": "^5.11.0",
@@ -25,6 +27,7 @@
     "eslint-config-next": "13.0.6",
     "lodash": "^4.17.21",
     "next": "13.0.6",
+    "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "18.2.0",
