@@ -11,6 +11,7 @@ interface FilterButtonProps {
 }
 
 export const FilterButton: FC<FilterButtonProps> = ({ value, possibleValues, onChange }) => {
+  
   return (
     <ToggleButtonGroup
       color="primary"
