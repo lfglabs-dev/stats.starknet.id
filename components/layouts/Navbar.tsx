@@ -4,7 +4,7 @@ import style from "../../styles/Navbar.module.css";
 
 export const Navbar: FC = () => {
   return (
-    <div className="fixed w-full h-200 z-[100] bg-transparent">
+    <div className="w-full h-200 z-[100] bg-transparent">
       <div className="flex justify-center w-full h-full 2xl:px-16 justify-self-center">
         <div className={style.section}>
           <img
