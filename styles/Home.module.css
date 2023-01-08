@@ -44,7 +44,7 @@
 .topLeftLeaf {
   position: absolute;
   right: 0%;
-  top: 0%;
+  top: -1%;
   transform: rotate(180deg);
   width: 300px;
   z-index: -1000;
@@ -65,7 +65,7 @@
   position: absolute;
   transform: rotate(270deg);
   bottom: -1%;
-  left: 0%;
+  left: -1%;
   width: 300px;
   z-index: -1000;
 }
