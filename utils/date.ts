@@ -1,4 +1,5 @@
-import { LocalDate } from "@js-joda/core";
+import { LocalDate, Month } from "@js-joda/core";
+import { capitalize } from "lodash";
 import { DomainCount, Period } from "../types/metrics";
 
 export const daysBetween = (date1: Date, date2: Date) => {
@@ -108,6 +109,22 @@ export const getFirstDayOfWeek = ({ week, year}: { week: number, year: number })
   date.setDate(date.getDate() + (week - 1) * 7);
 
   return date;
+}
+
+export const getDateFromPeriod = (period: Period, dateInMs: number) => {
+  const date = new Date(dateInMs);
+  switch (period) {
+    case Period.DAILY:
+      return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+    case Period.WEEKLY:
+      return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+    case Period.MONTHLY:
+      return capitalize(Month.of(date.getMonth() + 1).toString());
+    case Period.YEARLY:
+      return date.getFullYear();
+    default:
+      throw new Error('Invalid period: ' + period);
+  }
 }
 
 

@@ -25,7 +25,7 @@ export const baseChartOptions = {
     enabled: false
   },
   xaxis: {
-    type: 'datetime',
+    type: 'category',
     tickAmount: 3,
     show: false,
     labels: {
