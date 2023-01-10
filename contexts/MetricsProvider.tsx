@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext, useCallback, useMemo, useState } from "react";
 import { useGetClubMetric, useGetDomainRegistrations, useGetDomainRenewals, useGetDomains, useGetExpiredClubDomains, useGetIdentities, useGetUniqueAddresses } from "../hooks/metrics";
 import { Club, DomainExpired, DomainCount, Period, PeriodRange } from "../types/metrics";
 import { dataToCountPerClub } from "../utils/dataToCountPerClub";
@@ -72,6 +72,14 @@ export const MetricsProvider = ({ children }: { children: any }) => {
     if(!countPerClub) return initialData;
     return dataToCountPerClub(countPerClub);
   }, [countPerClub])
+
+  const handlePeriodChange = useCallback((newPeriod: Period) => {
+    console.log(newPeriod)
+    if(!newPeriod) {
+      return;
+    }
+    setPeriod(newPeriod);
+  }, [setPeriod])
   
   const contextValues = useMemo(() => {
     return {
@@ -88,12 +96,12 @@ export const MetricsProvider = ({ children }: { children: any }) => {
       domainRegistrations: domainRegistrations as [] || [],
       domainRenewals: domainRenewed as [] || [],
       expiredDomains: expiredDomains as [] || [],
-      changePeriod: setPeriod,
+      changePeriod: handlePeriodChange,
       periodRangeForCharts,
       currentPeriodRange,
     }
   }, 
-  [period, countPerClubMap, domainRegistrations, domainRenewed, expiredDomains, periodRangeForCharts, currentPeriodRange, domainsCreated, identitiesCreated, uniqueAddresses]);
+  [period, countPerClubMap, domainRegistrations, domainRenewed, expiredDomains, periodRangeForCharts, currentPeriodRange, domainsCreated, identitiesCreated, uniqueAddresses, handlePeriodChange]);
 
   return (
     <MetricsContext.Provider value={contextValues}>
