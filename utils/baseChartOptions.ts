@@ -18,6 +18,10 @@ export const baseChartOptions = {
     },
     style: {
       fontSize: '14px'
+    },
+    fixed: {
+      enabled: true,
+      position: 'topRight',
     }
   },
   colors: ['#19aa6e'],
