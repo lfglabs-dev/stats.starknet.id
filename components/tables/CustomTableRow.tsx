@@ -18,11 +18,11 @@ export const CustomTableRow: FC<DataInfo> = ({ club, domain }) => {
       key={domain}
       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
-      <a href={uri} target="_blank" rel="noreferrer">
-        <TableCell align="center" component="th" scope="row" className={style.tableCellLabel}>
+      <TableCell align="center" component="th" scope="row" className={style.tableCellLabel}>
+        <a href={uri} target="_blank" rel="noreferrer">
           {domain}
-        </TableCell>
-      </a>
+        </a>
+      </TableCell>
       <TableCell align="center" className={style.tableCellLabel}>{club}</TableCell>
     </TableRow>
   )
