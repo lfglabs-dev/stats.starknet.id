@@ -12,6 +12,11 @@
   color: var(--soft-brown);
   border-bottom: none;
   cursor: pointer;
+  
+}
+
+.tableCellLabel:hover {
+  text-decoration: underline;
 }
 
 .tableContainer {

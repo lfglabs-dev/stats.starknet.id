@@ -1,6 +1,7 @@
 import { TableContainer, TableHead, TableRow, TableCell, TableBody, Table } from "@mui/material";
 import { FC } from "react";
 import style from '../../styles/Table.module.css';
+import { CustomTableRow } from "./CustomTableRow";
 
 export interface DataInfo {
   club: string;
@@ -23,15 +24,7 @@ export const DataTable: FC<TableProps> = ({ data }) => {
         </TableHead>
         <TableBody>
           {data.map((row) => (
-            <TableRow
-              key={row.domain}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell align="center" component="th" scope="row" className={style.tableCellLabel}>
-                {row.domain}
-              </TableCell>
-              <TableCell align="center" className={style.tableCellLabel}>{row.club}</TableCell>
-            </TableRow>
+            <CustomTableRow key={row.domain} domain={row.domain} club={row.club} />
           ))}
         </TableBody>
       </Table>

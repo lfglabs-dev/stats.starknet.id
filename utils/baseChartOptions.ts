@@ -18,6 +18,10 @@ export const baseChartOptions = {
     },
     style: {
       fontSize: '14px'
+    },
+    fixed: {
+      enabled: true,
+      position: 'topRight',
     }
   },
   colors: ['#19aa6e'],
@@ -25,7 +29,7 @@ export const baseChartOptions = {
     enabled: false
   },
   xaxis: {
-    type: 'datetime',
+    type: 'category',
     tickAmount: 3,
     show: false,
     labels: {
