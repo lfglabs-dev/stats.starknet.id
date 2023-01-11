@@ -74,7 +74,6 @@ export const MetricsProvider = ({ children }: { children: any }) => {
   }, [countPerClub])
 
   const handlePeriodChange = useCallback((newPeriod: Period) => {
-    console.log(newPeriod)
     if(!newPeriod) {
       return;
     }
