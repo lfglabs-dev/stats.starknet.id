@@ -9,14 +9,13 @@ import { DataInfo, DataTable } from "../components/tables/DataTable";
 import { TablePagination } from "../components/tables/TablePagination";
 import { FilterButton } from "../components/buttons/FIlterButton";
 import { useMetrics } from "../hooks/useMetrics";
-import { orderBy } from "lodash";
 import { Club, Period } from "../types/metrics";
 import { useTable } from "../hooks/useTable";
 import { domainCountToDataChart } from "../utils/domainCountToDataChart";
 import { clubToString } from "../utils/clubToString";
 
 const Home: NextPage = () => {
-  const { 
+  const {
     period,
     domainsCreated,
     identitiesCreated,
@@ -30,31 +29,36 @@ const Home: NextPage = () => {
     domainRegistrations,
     expiredDomains,
     domainRenewals,
-    changePeriod
-   } = useMetrics();
+    changePeriod,
+  } = useMetrics();
 
   const tableDataOrdered = useMemo(() => {
-    return expiredDomains.map(domain => ({
+    return expiredDomains.map((domain) => ({
       ...domain,
-      club: clubToString(domain.club as Club)
-    }))
-  }, [expiredDomains])
+      club: clubToString(domain.club as Club),
+    }));
+  }, [expiredDomains]);
 
   const {
     data: tableData,
     numberOfPages,
     handleChangePage,
-  } = useTable<DataInfo>({ data: tableDataOrdered, limit: 10 })
+  } = useTable<DataInfo>({ data: tableDataOrdered, limit: 10 });
 
   const domainDataChart = useMemo(() => {
     return domainCountToDataChart(domainRegistrations, period);
-  }, [domainRegistrations, period])
+  }, [domainRegistrations, period]);
 
   const domainRenewalDataChart = useMemo(() => {
     return domainCountToDataChart(domainRenewals, period);
-  }, [domainRenewals, period])
+  }, [domainRenewals, period]);
 
-  const filterValues = [Period.DAILY, Period.WEEKLY, Period.MONTHLY, Period.YEARLY];
+  const filterValues = [
+    Period.DAILY,
+    Period.WEEKLY,
+    Period.MONTHLY,
+    Period.YEARLY,
+  ];
 
   return (
     <div className={styles.column}>
@@ -68,35 +72,46 @@ const Home: NextPage = () => {
         <div className={styles.column}>
           <div className={styles.row}>
             <div className="flex justify-center w-full">
-              <FilterButton value={period} possibleValues={filterValues} onChange={changePeriod}/>
+              <FilterButton
+                value={period}
+                possibleValues={filterValues}
+                onChange={changePeriod}
+              />
             </div>
-          </div>  
+          </div>
           <div className={styles.row}>
             <StatCard title="Domains created" statValue={domainsCreated} />
-            <StatCard title="Identities created" statValue={identitiesCreated} />
+            <StatCard
+              title="Identities created"
+              statValue={identitiesCreated}
+            />
             <StatCard title="Unique addresses" statValue={uniqueAddresses} />
           </div>
           <div className={styles.row}>
             <Chart
               title="Amount of domain registrations"
-              series={[{
-                name:'Domains created',
-                data: domainDataChart
-              }]}
+              series={[
+                {
+                  name: "Domains created",
+                  data: domainDataChart,
+                },
+              ]}
               formatter={(value) => formatValue(value)}
             />
             <Chart
               title="Amount of domain renewals"
-              series={[{
-                name:'Domain renewed',
-                data: domainRenewalDataChart
-              }]}
+              series={[
+                {
+                  name: "Domain renewed",
+                  data: domainRenewalDataChart,
+                },
+              ]}
               formatter={(value) => formatValue(value)}
             />
           </div>
         </div>
       </div>
-      <div className={styles.section1}>
+      <div className={styles.section2}>
         <div className={styles.column}>
           <h1 className={styles.title}>Clubs</h1>
           <div className={styles.row}>
@@ -122,7 +137,10 @@ const Home: NextPage = () => {
         <div className={styles.column}>
           <h1 className={styles.title}>Recently expired</h1>
           <DataTable data={tableData} />
-          <TablePagination numberOfPages={numberOfPages} onClick={handleChangePage} />
+          <TablePagination
+            numberOfPages={numberOfPages}
+            onClick={handleChangePage}
+          />
         </div>
       </div>
     </div>

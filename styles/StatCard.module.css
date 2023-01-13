@@ -4,7 +4,7 @@
   text-align: left;
   color: inherit;
   text-decoration: none;
-  border: 6px solid var(--soft-brown);
+  border: 3px solid var(--soft-brown);
   border-radius: 60px;
   transition: color 0.15s ease, border-color 0.15s ease;
   width: 33%;
@@ -12,21 +12,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-width: 6px;
 }
 
 .subtitle {
   font-size: 1.5rem;
-  text-align: left;
-  color: var(--soft-brown);
+  text-align: center;
+  color: var(--green);
   font-family: "Montserrat-ExtraBold";
 }
 
 .valueLabel {
   font-family: "Montserrat-ExtraBold";
-  font-size: 4em;
+  font-size: 3em;
   color: var(--green);
-  text-shadow: 4px 4px var(--soft-brown);
+  text-shadow: 2px 2px var(--soft-brown);
 }
 
 .loader {
@@ -45,7 +44,7 @@
   }
 
   .valueLabel {
-    font-size: 3em;
+    font-size: 2em;
   }
 }
 
