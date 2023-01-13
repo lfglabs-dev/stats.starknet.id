@@ -55,7 +55,7 @@ export const MetricsProvider = ({ children }: { children: any }) => {
   const { domainsCreated } = useGetDomains({ periodRange: currentPeriodRange, period });
   const { identitiesCreated } = useGetIdentities({ periodRange: currentPeriodRange, period });
   const { uniqueAddresses } = useGetUniqueAddresses({ periodRange: currentPeriodRange, period });
-  const { countPerClub } = useGetClubMetric({ periodRange: currentPeriodRange, period });
+  const { countPerClub } = useGetClubMetric({ periodRange: periodRangeForCharts, period });
   const { domainRegistrations } = useGetDomainRegistrations({ periodRange: periodRangeForCharts, period });
   const { expiredDomains } = useGetExpiredClubDomains();
   const { domainRenewed } = useGetDomainRenewals({ periodRange: periodRangeForCharts, period });
