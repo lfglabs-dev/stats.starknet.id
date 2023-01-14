@@ -10,7 +10,7 @@ export const CustomTableRow: FC<DataInfo> = ({ club, domain }) => {
   const uri = useMemo(() => {
     const cleanedDomain = formatDomain(domain);
     if(!baseURI) return;
-    return `${baseURI}/${cleanedDomain}`;
+    return `${baseURI}/search?domain=${cleanedDomain}`;
   }, [domain, baseURI])
   
   return (
