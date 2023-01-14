@@ -107,7 +107,7 @@ const Home: NextPage = () => {
           <div className={styles.row}>
             <StatCard title="99 Club" statValue={nineNineClub} />
             <StatCard title="999 Club" statValue={tripleNineClub} />
-            <StatCard title="10k Club" statValue={tenKClub} />
+            <StatCard title="4 letters" statValue={tenKClub} />
           </div>
         </div>
       </div>
