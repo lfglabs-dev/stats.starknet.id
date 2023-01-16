@@ -1,5 +1,6 @@
+.section2,
 .section1 {
-  padding-top: 6rem;
+  padding-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,9 +8,13 @@
   width: 100%;
 }
 
+.section2 {
+  padding-top: 6rem;
+}
+
 .section3 {
   min-height: 120vh;
-  padding: 4rem 0rem;
+  padding: 6rem 0rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,6 +34,8 @@
 .row {
   display: flex;
   flex-direction: row;
+  margin-top: 5px;
+  margin-top: 5px;
   width: 70%;
 }
 
@@ -46,7 +53,7 @@
   right: 0%;
   top: -1%;
   transform: rotate(180deg);
-  width: 300px;
+  width: 250px;
   z-index: -1000;
   overflow: hidden;
 }
@@ -56,7 +63,7 @@
   transform: rotate(180deg);
   left: -1%;
   top: 0%;
-  width: 300px;
+  width: 250px;
   z-index: -1000;
   overflow: hidden;
 }
@@ -66,7 +73,7 @@
   transform: rotate(270deg);
   bottom: -1%;
   left: -1%;
-  width: 300px;
+  width: 250px;
   z-index: -1000;
 }
 
@@ -74,14 +81,25 @@
   position: absolute;
   right: 0%;
   bottom: -1%;
-  width: 300px;
+  width: 250px;
   z-index: -1000;
   overflow: hidden;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+  .topLeftLeaf,
+  .topRightLeaf,
+  .bottomLeftLeaf,
+  .bottomRightLeaf {
+    visibility: hidden;
+  }
+
+  .section3,
+  .section2 {
+    padding: 2rem 0;
+  }
   .title {
-    font-size: 6rem;
+    font-size: 4rem;
   }
 }
 

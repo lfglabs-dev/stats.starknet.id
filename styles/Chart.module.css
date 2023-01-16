@@ -30,7 +30,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   font-family: "Montserrat-ExtraBold";
-  color: var(--soft-brown);
+  color: var(--brown);
 }
 
 @media (min-width: 768px) and (max-width: 1360px) {
