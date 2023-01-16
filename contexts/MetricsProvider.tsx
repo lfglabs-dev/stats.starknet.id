@@ -12,6 +12,7 @@ interface MetricsConfig {
   oneLetter: number;
   twoLetters: number;
   threeLetters: number;
+  fourLetters: number;
   nineNineClub: number;
   tripleNineClub: number;
   tenKClub: number;
@@ -31,6 +32,7 @@ export const MetricsContext = createContext<MetricsConfig>({
   oneLetter: 0,
   twoLetters: 0,
   threeLetters: 0,
+  fourLetters: 0,
   nineNineClub: 0,
   tripleNineClub: 0,
   tenKClub: 0,
@@ -65,6 +67,7 @@ export const MetricsProvider = ({ children }: { children: any }) => {
       oneLetter: 0,
       twoLetters: 0,
       threeLetters: 0,
+      fourLetters: 0,
       nineNineClub: 0,
       tripleNineClub: 0,
       tenKClub: 0,
@@ -89,6 +92,7 @@ export const MetricsProvider = ({ children }: { children: any }) => {
       oneLetter: countPerClubMap.oneLetter,
       twoLetters: countPerClubMap.twoLetters,
       threeLetters: countPerClubMap.threeLetters,
+      fourLetters: countPerClubMap.fourLetters,
       nineNineClub: countPerClubMap.nineNineClub,
       tripleNineClub: countPerClubMap.tripleNineClub,
       tenKClub: countPerClubMap.tenKClub,

@@ -4,6 +4,7 @@ export type CountPerClub = {
   oneLetter: number;
   twoLetters: number;
   threeLetters: number;
+  fourLetters: number;
   nineNineClub: number;
   tripleNineClub: number;
   tenKClub: number;
@@ -15,6 +16,7 @@ export const dataToCountPerClub = (data: DomainPerClub[]): CountPerClub => {
     oneLetter: 0,
     twoLetters: 0,
     threeLetters: 0,
+    fourLetters: 0,
     nineNineClub: 0,
     tripleNineClub: 0,
     tenKClub: 0,
@@ -30,6 +32,9 @@ export const dataToCountPerClub = (data: DomainPerClub[]): CountPerClub => {
         break;
       case Club.THREE_LETTER:
         initialData.threeLetters = d.count || 0;
+        break;
+      case Club.FOUR_LETTER:
+        initialData.fourLetters = d.count || 0;
         break;
       case Club.NINE_NINE:
         initialData.nineNineClub = d.count || 0;

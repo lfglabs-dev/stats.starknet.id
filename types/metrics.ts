@@ -27,6 +27,7 @@ export enum Club {
   ONE_LETTER = 'single_letter',
   TWO_LETTER = 'two_letters',
   THREE_LETTER = 'three_letters',
+  FOUR_LETTER = 'four_letters',
   NINE_NINE = '99',
   TRIPLE_NINE = '999',
   TEN_K_CLUB = '10k',
