@@ -23,6 +23,7 @@ const Home: NextPage = () => {
     oneLetter,
     twoLetters,
     threeLetters,
+    fourLetters,
     nineNineClub,
     tripleNineClub,
     tenKClub,
@@ -122,7 +123,7 @@ const Home: NextPage = () => {
           <div className={styles.row}>
             <StatCard title="99 Club" statValue={nineNineClub} />
             <StatCard title="999 Club" statValue={tripleNineClub} />
-            <StatCard title="4 letters" statValue={tenKClub} />
+            <StatCard title="4 letters" statValue={fourLetters} />
           </div>
         </div>
       </div>

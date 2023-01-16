@@ -8,6 +8,8 @@ export const clubToString = (club: Club) => {
       return "2 Letters";
     case Club.THREE_LETTER:
       return "3 Letters";
+    case Club.FOUR_LETTER:
+      return "4 Letters";
     case Club.NINE_NINE:
       return "99";
     case Club.TRIPLE_NINE:
