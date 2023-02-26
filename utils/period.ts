@@ -6,16 +6,17 @@ export const getPeriodInformation = (range: Range): PeriodRange => {
   const today = LocalDate.now();
   const origin = LocalDate.of(2022, 12, 7);
   const originTimestamp = new Date('2022-12-07').getTime() / 1000;
+  const todayTimestamp = new Date(today.toString()).getTime() / 1000;
 
-  const { timestamp: newOriginTimestamp, date: newDate } = computeTimestampWithRange(originTimestamp, range);
+  const { timestamp: newTimestamp, date: newDate } = computeTimestampWithRange(todayTimestamp, range);
 
-  const isNewOriginBeforeOrigin = newOriginTimestamp < originTimestamp;
+  const isNewOriginBeforeOrigin = newTimestamp < originTimestamp;
 
   const newOrigin = isNewOriginBeforeOrigin ? new Date(origin.toString()) : newDate;
 
-  const segments = daysBetween(new Date(today.toString()), newOrigin);
+  const newOriginTimestamp = isNewOriginBeforeOrigin ? originTimestamp : newTimestamp;
 
-  const todayTimestamp = new Date(today.toString()).getTime() / 1000;
+  const segments = daysBetween(new Date(today.toString()), newOrigin);
 
   return {
     since: newOriginTimestamp,
@@ -69,28 +70,27 @@ export const getPeriodInformationForStats = (): Record<Period, PeriodRange> => {
 
 
 export const computeTimestampWithRange = (currentTimestamp: number, range: Range): { timestamp: number, date: Date } => {
-  console.log(currentTimestamp - (180 * 24 * 60 * 60))
-  console.log(new Date(currentTimestamp * 1000));
+  const today = LocalDate.now();
   switch (range) {
     case Range['30D']:
       return {
         timestamp: currentTimestamp - (30 * 24 * 60 * 60),
-        date: new Date((currentTimestamp - (30 * 24 * 60 * 60)) * 1000),
+        date: new Date(today.minusDays(30).toString()),
       }
     case Range['90D']:
       return {
         timestamp: currentTimestamp - (90 * 24 * 60 * 60),
-        date: new Date((currentTimestamp - (90 * 24 * 60 * 60)) * 1000),
+        date: new Date(today.minusDays(90).toString()),
       }
     case Range['180D']:
       return {
         timestamp: currentTimestamp - (180 * 24 * 60 * 60),
-        date: new Date((currentTimestamp - (180 * 24 * 60 * 60)) * 1000),
+        date: new Date(today.minusDays(180).toString()),
       }
     case Range.ALL:
       return {
-        timestamp: currentTimestamp,
-        date: new Date(currentTimestamp * 1000),
+        timestamp: new Date('2022-12-07').getTime() / 1000,
+        date: new Date('2022-12-07'),
       }
   }
 }
