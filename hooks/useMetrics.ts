@@ -4,6 +4,7 @@ import { MetricsContext } from "../contexts/MetricsProvider"
 export const useMetrics = () => {
   const { 
     period,
+    range,
     domainsCreated,
     identitiesCreated,
     uniqueAddresses,
@@ -19,10 +20,12 @@ export const useMetrics = () => {
     periodRangeForCharts: periodRange,
     expiredDomains,
     currentPeriodRange,
-    changePeriod
+    changePeriod,
+    changeRange,
   } = useContext(MetricsContext);
   return {
     period,
+    range,
     domainsCreated,
     identitiesCreated,
     uniqueAddresses,
@@ -38,6 +41,7 @@ export const useMetrics = () => {
     periodRange,
     expiredDomains,
     currentPeriodRange,
-    changePeriod
+    changePeriod,
+    changeRange
   }
 }
