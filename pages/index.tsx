@@ -73,7 +73,7 @@ const Home: NextPage = () => {
         <div className={styles.column}>
           <div className={styles.row}>
             <div className="flex justify-center w-full">
-              <FilterButton
+              <FilterButton<Period>
                 value={period}
                 possibleValues={filterValues}
                 onChange={changePeriod}

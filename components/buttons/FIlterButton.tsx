@@ -1,28 +1,26 @@
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
-import { FC } from "react";
+import { FC, Key } from "react";
 import style from "../../styles/FilterButton.module.css";
 import { Period } from "../../types/metrics";
 
-
-interface FilterButtonProps {
-  value: Period;
-  possibleValues: Period[];
-  onChange: (value: Period) => void;
+interface FilterButtonProps<T> {
+  value: T;
+  possibleValues: T[];
+  onChange: (value: T) => void;
 }
 
-export const FilterButton: FC<FilterButtonProps> = ({ value, possibleValues, onChange }) => {
-  
+export function FilterButton<T>({value, possibleValues, onChange }: FilterButtonProps<T>) {
   return (
     <ToggleButtonGroup
       color="primary"
       value={value}
       exclusive
-      onChange={(_, value) => onChange(value as Period)}
+      onChange={(_, value) => onChange(value as T)}
       aria-label="Period"
       className={style.toggleButtonGroup}
     >
       {possibleValues.map((value) => (
-        <ToggleButton className={style.toggleButton} key={value} value={value}>{value}</ToggleButton>
+        <ToggleButton className={style.toggleButton} key={value as string} value={value as string}>{value as string}</ToggleButton>
       ))}
     </ToggleButtonGroup>
   )
