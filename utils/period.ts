@@ -1,18 +1,24 @@
 import { LocalDate } from "@js-joda/core";
-import { Period, PeriodRange } from "../types/metrics";
+import { Period, PeriodRange, Range } from "../types/metrics";
 import { daysBetween } from "./date";
 
-export const getPeriodInformation = (): PeriodRange => {
+export const getPeriodInformation = (range: Range): PeriodRange => {
   const today = LocalDate.now();
   const origin = LocalDate.of(2022, 12, 7);
   const originTimestamp = new Date('2022-12-07').getTime() / 1000;
 
-  const segments = daysBetween(new Date(today.toString()), new Date(origin.toString()));
+  const { timestamp: newOriginTimestamp, date: newDate } = computeTimestampWithRange(originTimestamp, range);
+
+  const isNewOriginBeforeOrigin = newOriginTimestamp < originTimestamp;
+
+  const newOrigin = isNewOriginBeforeOrigin ? new Date(origin.toString()) : newDate;
+
+  const segments = daysBetween(new Date(today.toString()), newOrigin);
 
   const todayTimestamp = new Date(today.toString()).getTime() / 1000;
 
   return {
-    since: originTimestamp,
+    since: newOriginTimestamp,
     end: todayTimestamp,
     segments,
   }
@@ -58,5 +64,33 @@ export const getPeriodInformationForStats = (): Record<Period, PeriodRange> => {
       end: todayTimestamp,
       segments,
     }
+  }
+}
+
+
+export const computeTimestampWithRange = (currentTimestamp: number, range: Range): { timestamp: number, date: Date } => {
+  console.log(currentTimestamp - (180 * 24 * 60 * 60))
+  console.log(new Date(currentTimestamp * 1000));
+  switch (range) {
+    case Range['30D']:
+      return {
+        timestamp: currentTimestamp - (30 * 24 * 60 * 60),
+        date: new Date((currentTimestamp - (30 * 24 * 60 * 60)) * 1000),
+      }
+    case Range['90D']:
+      return {
+        timestamp: currentTimestamp - (90 * 24 * 60 * 60),
+        date: new Date((currentTimestamp - (90 * 24 * 60 * 60)) * 1000),
+      }
+    case Range['180D']:
+      return {
+        timestamp: currentTimestamp - (180 * 24 * 60 * 60),
+        date: new Date((currentTimestamp - (180 * 24 * 60 * 60)) * 1000),
+      }
+    case Range.ALL:
+      return {
+        timestamp: currentTimestamp,
+        date: new Date(currentTimestamp * 1000),
+      }
   }
 }
