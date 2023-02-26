@@ -1,7 +1,5 @@
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
-import { FC, Key } from "react";
 import style from "../../styles/FilterButton.module.css";
-import { Period } from "../../types/metrics";
 
 interface FilterButtonProps<T> {
   value: T;
