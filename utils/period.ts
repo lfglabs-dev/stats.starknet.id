@@ -1,18 +1,25 @@
 import { LocalDate } from "@js-joda/core";
-import { Period, PeriodRange } from "../types/metrics";
+import { Period, PeriodRange, Range } from "../types/metrics";
 import { daysBetween } from "./date";
 
-export const getPeriodInformation = (): PeriodRange => {
+export const getPeriodInformation = (range: Range): PeriodRange => {
   const today = LocalDate.now();
   const origin = LocalDate.of(2022, 12, 7);
   const originTimestamp = new Date('2022-12-07').getTime() / 1000;
-
-  const segments = daysBetween(new Date(today.toString()), new Date(origin.toString()));
-
   const todayTimestamp = new Date(today.toString()).getTime() / 1000;
 
+  const { timestamp: newTimestamp, date: newDate } = computeTimestampWithRange(todayTimestamp, range);
+
+  const isNewOriginBeforeOrigin = newTimestamp < originTimestamp;
+
+  const newOrigin = isNewOriginBeforeOrigin ? new Date(origin.toString()) : newDate;
+
+  const newOriginTimestamp = isNewOriginBeforeOrigin ? originTimestamp : newTimestamp;
+
+  const segments = daysBetween(new Date(today.toString()), newOrigin);
+
   return {
-    since: originTimestamp,
+    since: newOriginTimestamp,
     end: todayTimestamp,
     segments,
   }
@@ -58,5 +65,32 @@ export const getPeriodInformationForStats = (): Record<Period, PeriodRange> => {
       end: todayTimestamp,
       segments,
     }
+  }
+}
+
+
+export const computeTimestampWithRange = (currentTimestamp: number, range: Range): { timestamp: number, date: Date } => {
+  const today = LocalDate.now();
+  switch (range) {
+    case Range['30D']:
+      return {
+        timestamp: currentTimestamp - (30 * 24 * 60 * 60),
+        date: new Date(today.minusDays(30).toString()),
+      }
+    case Range['90D']:
+      return {
+        timestamp: currentTimestamp - (90 * 24 * 60 * 60),
+        date: new Date(today.minusDays(90).toString()),
+      }
+    case Range['180D']:
+      return {
+        timestamp: currentTimestamp - (180 * 24 * 60 * 60),
+        date: new Date(today.minusDays(180).toString()),
+      }
+    case Range.ALL:
+      return {
+        timestamp: new Date('2022-12-07').getTime() / 1000,
+        date: new Date('2022-12-07'),
+      }
   }
 }

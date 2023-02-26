@@ -39,3 +39,10 @@ export enum Period {
   MONTHLY = 'monthly',
   YEARLY = 'yearly',
 }
+
+export enum Range {
+  '30D' = '30D',
+  '90D' = '90D',
+  '180D' = '180D',
+  ALL = 'All',
+}

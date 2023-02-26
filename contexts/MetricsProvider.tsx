@@ -1,11 +1,12 @@
 import { createContext, useCallback, useMemo, useState } from "react";
 import { useGetClubMetric, useGetDomainRegistrations, useGetDomainRenewals, useGetDomains, useGetExpiredClubDomains, useGetIdentities, useGetUniqueAddresses } from "../hooks/metrics";
-import { Club, DomainExpired, DomainCount, Period, PeriodRange } from "../types/metrics";
+import { Club, DomainExpired, DomainCount, Period, PeriodRange, Range } from "../types/metrics";
 import { dataToCountPerClub } from "../utils/dataToCountPerClub";
 import { getPeriodInformation, getPeriodInformationForStats } from "../utils/period";
 
 interface MetricsConfig {
   period: Period;
+  range: Range;
   domainsCreated: number;
   identitiesCreated: number;
   uniqueAddresses: number;
@@ -20,12 +21,14 @@ interface MetricsConfig {
   domainRenewals: DomainCount[];
   expiredDomains: DomainExpired[];
   changePeriod: (period: Period) => void;
+  changeRange: (range: Range) => void;
   periodRangeForCharts: PeriodRange;
   currentPeriodRange: PeriodRange;
 }
 
 export const MetricsContext = createContext<MetricsConfig>({
   period: Period.MONTHLY,
+  range: Range.ALL,
   domainsCreated: 0,
   identitiesCreated: 0,
   uniqueAddresses: 0,
@@ -40,14 +43,16 @@ export const MetricsContext = createContext<MetricsConfig>({
   domainRenewals: [],
   expiredDomains: [],
   changePeriod: () => {},
+  changeRange: () => {},
   periodRangeForCharts: { since: 0, end: 0, segments: 1 },
   currentPeriodRange: { since: 0, end: 0, segments: 1 },
 })
 
 export const MetricsProvider = ({ children }: { children: any }) => {
   const [period, setPeriod] = useState<Period>(Period.MONTHLY);
+  const [range, setRange] = useState<Range>(Range.ALL);
 
-  const periodRangeForCharts = getPeriodInformation();
+  const periodRangeForCharts = getPeriodInformation(range);
   const periodRangeForStats = getPeriodInformationForStats();
 
   const currentPeriodRange = useMemo(() => {
@@ -82,10 +87,18 @@ export const MetricsProvider = ({ children }: { children: any }) => {
     }
     setPeriod(newPeriod);
   }, [setPeriod])
+
+  const handleRangeChange = useCallback((newRange: Range) => {
+    if(!newRange) {
+      return;
+    }
+    setRange(newRange);
+  }, [setRange])
   
   const contextValues = useMemo(() => {
     return {
       period,
+      range,
       domainsCreated: domainsCreated || 0,
       identitiesCreated: identitiesCreated || 0,
       uniqueAddresses: uniqueAddresses || 0,
@@ -100,11 +113,12 @@ export const MetricsProvider = ({ children }: { children: any }) => {
       domainRenewals: domainRenewed as [] || [],
       expiredDomains: expiredDomains as [] || [],
       changePeriod: handlePeriodChange,
+      changeRange: handleRangeChange,
       periodRangeForCharts,
       currentPeriodRange,
     }
   }, 
-  [period, countPerClubMap, domainRegistrations, domainRenewed, expiredDomains, periodRangeForCharts, currentPeriodRange, domainsCreated, identitiesCreated, uniqueAddresses, handlePeriodChange]);
+  [period, range, countPerClubMap, domainRegistrations, domainRenewed, expiredDomains, periodRangeForCharts, currentPeriodRange, domainsCreated, identitiesCreated, uniqueAddresses, handlePeriodChange, handleRangeChange]);
 
   return (
     <MetricsContext.Provider value={contextValues}>

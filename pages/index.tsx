@@ -9,7 +9,7 @@ import { DataInfo, DataTable } from "../components/tables/DataTable";
 import { TablePagination } from "../components/tables/TablePagination";
 import { FilterButton } from "../components/buttons/FIlterButton";
 import { useMetrics } from "../hooks/useMetrics";
-import { Club, Period } from "../types/metrics";
+import { Club, Period, Range } from "../types/metrics";
 import { useTable } from "../hooks/useTable";
 import { domainCountToDataChart } from "../utils/domainCountToDataChart";
 import { clubToString } from "../utils/clubToString";
@@ -17,6 +17,7 @@ import { clubToString } from "../utils/clubToString";
 const Home: NextPage = () => {
   const {
     period,
+    range,
     domainsCreated,
     identitiesCreated,
     uniqueAddresses,
@@ -31,6 +32,7 @@ const Home: NextPage = () => {
     expiredDomains,
     domainRenewals,
     changePeriod,
+    changeRange,
   } = useMetrics();
 
   const tableDataOrdered = useMemo(() => {
@@ -61,6 +63,8 @@ const Home: NextPage = () => {
     Period.YEARLY,
   ];
 
+  const rangeValues = [Range['30D'], Range['90D'], Range['180D'], Range.ALL];
+
   return (
     <div className={styles.column}>
       <div className={styles.topLeftLeaf}>
@@ -73,7 +77,7 @@ const Home: NextPage = () => {
         <div className={styles.column}>
           <div className={styles.row}>
             <div className="flex justify-center w-full">
-              <FilterButton
+              <FilterButton<Period>
                 value={period}
                 possibleValues={filterValues}
                 onChange={changePeriod}
@@ -110,8 +114,18 @@ const Home: NextPage = () => {
               formatter={(value) => formatValue(value)}
             />
           </div>
+          <div className={styles.row}>
+            <div className="flex justify-center w-full">
+              <FilterButton<Range>
+                value={range}
+                possibleValues={rangeValues}
+                onChange={changeRange}
+              />
+            </div>
+          </div>
         </div>
       </div>
+      
       <div className={styles.section2}>
         <div className={styles.column}>
           <h1 className={styles.title}>Clubs</h1>
