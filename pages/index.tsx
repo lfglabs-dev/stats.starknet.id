@@ -63,7 +63,7 @@ const Home: NextPage = () => {
     Period.YEARLY,
   ];
 
-  const rangeValues = [Range['30D'], Range['90D'], Range['180D'], Range.ALL];
+  const rangeValues = [Range["30D"], Range["90D"], Range["180D"], Range.ALL];
 
   return (
     <div className={styles.column}>
@@ -77,11 +77,20 @@ const Home: NextPage = () => {
         <div className={styles.column}>
           <div className={styles.row}>
             <div className="flex justify-center w-full">
-              <FilterButton<Period>
-                value={period}
-                possibleValues={filterValues}
-                onChange={changePeriod}
-              />
+              <div className="m-2">
+                <FilterButton<Period>
+                  value={period}
+                  possibleValues={filterValues}
+                  onChange={changePeriod}
+                />
+              </div>
+              <div className="m-2">
+                <FilterButton<Range>
+                  value={range}
+                  possibleValues={rangeValues}
+                  onChange={changeRange}
+                />
+              </div>
             </div>
           </div>
           <div className={styles.row}>
@@ -114,18 +123,9 @@ const Home: NextPage = () => {
               formatter={(value) => formatValue(value)}
             />
           </div>
-          <div className={styles.row}>
-            <div className="flex justify-center w-full">
-              <FilterButton<Range>
-                value={range}
-                possibleValues={rangeValues}
-                onChange={changeRange}
-              />
-            </div>
-          </div>
         </div>
       </div>
-      
+
       <div className={styles.section2}>
         <div className={styles.column}>
           <h1 className={styles.title}>Clubs</h1>
