@@ -4,8 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
 .section2 {
@@ -22,6 +22,7 @@
   flex: 1;
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
 .column {
@@ -40,7 +41,7 @@
 }
 
 .title {
-  font-family: "Montserrat-ExtraBold";
+  font-family: "QuickZap";
   font-size: 4rem;
   color: var(--green);
   text-shadow: 4px 4px var(--soft-brown);
@@ -48,40 +49,40 @@
   text-align: center;
 }
 
-.topLeftLeaf {
+.topRightLeaf {
   position: absolute;
-  right: 0%;
-  top: -1%;
-  transform: rotate(180deg);
-  width: 250px;
+  left: -120px;
+  top: -20%;
+  transform: rotate(140deg);
+  width: 260px;
   z-index: -1000;
   overflow: hidden;
 }
 
-.topRightLeaf {
+.topLeftLeaf {
   position: absolute;
-  transform: rotate(180deg);
-  left: -1%;
-  top: 0%;
-  width: 250px;
+  transform: rotate(230deg);
+  right: -0%;
+  top: -20%;
+  width: 150px;
   z-index: -1000;
   overflow: hidden;
 }
 
 .bottomLeftLeaf {
   position: absolute;
-  transform: rotate(270deg);
-  bottom: -1%;
-  left: -1%;
-  width: 250px;
+  width: 300px;
+  z-index: -1000;
+  bottom: -20%;
+  left: -100px;
   z-index: -1000;
 }
 
 .bottomRightLeaf {
   position: absolute;
-  right: 0%;
-  bottom: -1%;
-  width: 250px;
+  bottom: -20%;
+  right: -80px;
+  width: 180px;
   z-index: -1000;
   overflow: hidden;
 }

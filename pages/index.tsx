@@ -67,16 +67,10 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.column}>
-      <div className={styles.topLeftLeaf}>
-        <img width="100%" alt="leaf" src="/assets/leaf_2.png" />
-      </div>
-      <div className={styles.topRightLeaf}>
-        <img width="100%" alt="leaf" src="/assets/leaf_1.png" />
-      </div>
       <div className={styles.section1}>
         <div className={styles.column}>
           <div className={styles.row}>
-            <div className="flex justify-center w-full">
+            <div className="flex justify-center w-full flex-col sm:flex-row items-center">
               <div className="m-2">
                 <FilterButton<Period>
                   value={period}
@@ -143,10 +137,10 @@ const Home: NextPage = () => {
       </div>
       <div className={styles.section3}>
         <div className={styles.bottomLeftLeaf}>
-          <img width="100%" alt="leaf" src="/assets/leaf_3.png" />
+          <img width="100%" alt="leaf" src="/assets/leavesGroup02.svg" />
         </div>
         <div className={styles.bottomRightLeaf}>
-          <img width="100%" alt="leaf" src="/assets/leaf_1.png" />
+          <img width="100%" alt="leaf" src="/assets/leavesGroup01.svg" />
         </div>
 
         <div className={styles.column}>

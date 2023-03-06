@@ -4,12 +4,8 @@
 
 @layer base {
   @font-face {
-    font-family: "Montserrat-ExtraBold";
-    src: url(../public/font/montserrat/Montserrat-ExtraBold.ttf);
-  }
-  @font-face {
-    font-family: "Montserrat-Regular";
-    src: url(../public/font/montserrat/Montserrat-Regular.ttf);
+    font-family: "QuickZap";
+    src: url(../public/font/quickzap.ttf);
   }
 }
 
@@ -31,7 +27,7 @@ body {
 }
 
 h1 {
-  font-family: "Montserrat-ExtraBold";
+  font-family: "QuickZap";
   font-size: 8em;
   color: var(--green);
   text-shadow: 4px 4px var(--soft-brown);
@@ -67,8 +63,8 @@ a {
   font-weight: 600;
   border: 2px solid var(--green) !important;
   -webkit-box-shadow: none !important;
-	-moz-box-shadow: none !important;
-	box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
   border-radius: 15px !important;
   padding: 5px !important;
 }
@@ -79,7 +75,8 @@ a {
   border-bottom: 0px !important;
 }
 
-.apexcharts-xcrosshairs.apexcharts-active, .apexcharts-ycrosshairs.apexcharts-active {
+.apexcharts-xcrosshairs.apexcharts-active,
+.apexcharts-ycrosshairs.apexcharts-active {
   opacity: 0 !important;
 }
 

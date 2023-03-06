@@ -18,11 +18,11 @@
   font-size: 1.5rem;
   text-align: center;
   color: var(--green);
-  font-family: "Montserrat-ExtraBold";
+  font-family: "QuickZap";
 }
 
 .valueLabel {
-  font-family: "Montserrat-ExtraBold";
+  font-family: "QuickZap";
   font-size: 3em;
   color: var(--green);
   text-shadow: 2px 2px var(--soft-brown);
@@ -58,6 +58,6 @@
     font-size: 1.5rem;
     text-align: center;
     color: var(--soft-brown);
-    font-family: "Montserrat-ExtraBold";
+    font-family: "QuickZap";
   }
 }
