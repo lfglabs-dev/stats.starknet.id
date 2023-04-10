@@ -1,8 +1,8 @@
-import { useContext } from "react"
-import { MetricsContext } from "../contexts/MetricsProvider"
+import { useContext } from "react";
+import { MetricsContext } from "../contexts/MetricsProvider";
 
 export const useMetrics = () => {
-  const { 
+  const {
     period,
     range,
     domainsCreated,
@@ -15,6 +15,9 @@ export const useMetrics = () => {
     nineNineClub,
     tripleNineClub,
     tenKClub,
+    braavosClub,
+    ogClub,
+    everaiClub,
     domainRegistrations,
     domainRenewals,
     periodRangeForCharts: periodRange,
@@ -36,12 +39,15 @@ export const useMetrics = () => {
     nineNineClub,
     tripleNineClub,
     tenKClub,
+    braavosClub,
+    ogClub,
+    everaiClub,
     domainRegistrations,
     domainRenewals,
     periodRange,
     expiredDomains,
     currentPeriodRange,
     changePeriod,
-    changeRange
-  }
-}
+    changeRange,
+  };
+};

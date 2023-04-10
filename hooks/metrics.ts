@@ -1,14 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
-import { Club, DomainCreatedResponse, DomainExpired, DomainPerClub, DomainCount, Period, PeriodRange } from "../types/metrics";
+import {
+  Club,
+  DomainCreatedResponse,
+  DomainExpired,
+  DomainPerClub,
+  DomainCount,
+  Period,
+  PeriodRange,
+} from "../types/metrics";
 import { fetchApi, methods } from "./fetchApi";
 
 interface UseGetMetricsDataProps {
-  periodRange: PeriodRange
+  periodRange: PeriodRange;
   period: Period;
 }
 
-export const useGetDomains = ({ periodRange, period } : UseGetMetricsDataProps) => {
-  const uri = '/count_domains';
+export const useGetDomains = ({
+  periodRange,
+  period,
+}: UseGetMetricsDataProps) => {
+  const uri = "/count_domains";
 
   const query = useQuery<DomainCreatedResponse, Error>({
     queryKey: [uri, period],
@@ -20,10 +31,13 @@ export const useGetDomains = ({ periodRange, period } : UseGetMetricsDataProps) 
     },
   });
   return { ...query, domainsCreated: query.data?.count };
-}
+};
 
-export const useGetIdentities = ({ periodRange, period } : UseGetMetricsDataProps) => {
-  const uri = '/count_ids';
+export const useGetIdentities = ({
+  periodRange,
+  period,
+}: UseGetMetricsDataProps) => {
+  const uri = "/count_ids";
 
   const query = useQuery<DomainCreatedResponse, Error>({
     queryKey: [uri, period],
@@ -35,10 +49,13 @@ export const useGetIdentities = ({ periodRange, period } : UseGetMetricsDataProp
     },
   });
   return { ...query, identitiesCreated: query.data?.count };
-}
+};
 
-export const useGetUniqueAddresses = ({ periodRange, period } : UseGetMetricsDataProps) => {
-  const uri = '/count_addrs';
+export const useGetUniqueAddresses = ({
+  periodRange,
+  period,
+}: UseGetMetricsDataProps) => {
+  const uri = "/count_addrs";
 
   const query = useQuery<DomainCreatedResponse, Error>({
     queryKey: [uri, period],
@@ -50,10 +67,13 @@ export const useGetUniqueAddresses = ({ periodRange, period } : UseGetMetricsDat
     },
   });
   return { ...query, uniqueAddresses: query.data?.count };
-}
+};
 
-export const useGetClubMetric = ({ periodRange, period } : UseGetMetricsDataProps) => {
-  const uri = '/count_club_domains';
+export const useGetClubMetric = ({
+  periodRange,
+  period,
+}: UseGetMetricsDataProps) => {
+  const uri = "/count_club_domains";
 
   const query = useQuery<DomainPerClub[], Error>({
     queryKey: [uri, period],
@@ -64,11 +84,12 @@ export const useGetClubMetric = ({ periodRange, period } : UseGetMetricsDataProp
       });
     },
   });
+  console.log("query.data", query.data);
   return { ...query, countPerClub: query.data };
-}
+};
 
 export const useGetExpiredClubDomains = () => {
-  const uri = '/expired_club_domains';
+  const uri = "/expired_club_domains";
 
   const query = useQuery<DomainExpired[], Error>({
     queryKey: [uri],
@@ -80,10 +101,12 @@ export const useGetExpiredClubDomains = () => {
     },
   });
   return { ...query, expiredDomains: query.data };
-}
+};
 
-export const useGetDomainRegistrations = ({ periodRange } : UseGetMetricsDataProps) => {
-  const uri = '/count_created';
+export const useGetDomainRegistrations = ({
+  periodRange,
+}: UseGetMetricsDataProps) => {
+  const uri = "/count_created";
 
   const query = useQuery<DomainCount[], Error>({
     queryKey: [uri, periodRange],
@@ -95,10 +118,12 @@ export const useGetDomainRegistrations = ({ periodRange } : UseGetMetricsDataPro
     },
   });
   return { ...query, domainRegistrations: query.data };
-}
+};
 
-export const useGetDomainRenewals = ({ periodRange } : UseGetMetricsDataProps) => {
-  const uri = '/count_renewed';
+export const useGetDomainRenewals = ({
+  periodRange,
+}: UseGetMetricsDataProps) => {
+  const uri = "/count_renewed";
 
   const query = useQuery<DomainCount[], Error>({
     queryKey: [uri, periodRange],
@@ -110,5 +135,4 @@ export const useGetDomainRenewals = ({ periodRange } : UseGetMetricsDataProps) =
     },
   });
   return { ...query, domainRenewed: query.data };
-}
-
+};
