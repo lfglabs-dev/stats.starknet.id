@@ -8,8 +8,10 @@ export type CountPerClub = {
   nineNineClub: number;
   tripleNineClub: number;
   tenKClub: number;
-}
-
+  braavosClub: number;
+  ogClub: number;
+  everaiClub: number;
+};
 
 export const dataToCountPerClub = (data: DomainPerClub[]): CountPerClub => {
   let initialData = {
@@ -20,10 +22,13 @@ export const dataToCountPerClub = (data: DomainPerClub[]): CountPerClub => {
     nineNineClub: 0,
     tripleNineClub: 0,
     tenKClub: 0,
-  }
+    braavosClub: 0,
+    ogClub: 0,
+    everaiClub: 0,
+  };
 
-  data.forEach(d => {
-    switch(d.club) {
+  data.forEach((d) => {
+    switch (d.club) {
       case Club.ONE_LETTER:
         initialData.oneLetter = d.count || 0;
         break;
@@ -45,9 +50,18 @@ export const dataToCountPerClub = (data: DomainPerClub[]): CountPerClub => {
       case Club.TEN_K_CLUB:
         initialData.tenKClub = d.count || 0;
         break;
+      case Club.BRAAVOS_CLUB:
+        initialData.braavosClub = d.count || 0;
+        break;
+      case Club.OG_CLUB:
+        initialData.ogClub = d.count || 0;
+        break;
+      case Club.EVERAI_CLUB:
+        initialData.everaiClub = d.count || 0;
+        break;
       default:
         return initialData;
     }
-  })
+  });
   return initialData;
-}
+};

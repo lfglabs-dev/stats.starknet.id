@@ -1,8 +1,26 @@
 import { createContext, useCallback, useMemo, useState } from "react";
-import { useGetClubMetric, useGetDomainRegistrations, useGetDomainRenewals, useGetDomains, useGetExpiredClubDomains, useGetIdentities, useGetUniqueAddresses } from "../hooks/metrics";
-import { Club, DomainExpired, DomainCount, Period, PeriodRange, Range } from "../types/metrics";
+import {
+  useGetClubMetric,
+  useGetDomainRegistrations,
+  useGetDomainRenewals,
+  useGetDomains,
+  useGetExpiredClubDomains,
+  useGetIdentities,
+  useGetUniqueAddresses,
+} from "../hooks/metrics";
+import {
+  Club,
+  DomainExpired,
+  DomainCount,
+  Period,
+  PeriodRange,
+  Range,
+} from "../types/metrics";
 import { dataToCountPerClub } from "../utils/dataToCountPerClub";
-import { getPeriodInformation, getPeriodInformationForStats } from "../utils/period";
+import {
+  getPeriodInformation,
+  getPeriodInformationForStats,
+} from "../utils/period";
 
 interface MetricsConfig {
   period: Period;
@@ -17,6 +35,9 @@ interface MetricsConfig {
   nineNineClub: number;
   tripleNineClub: number;
   tenKClub: number;
+  braavosClub: number;
+  ogClub: number;
+  everaiClub: number;
   domainRegistrations: DomainCount[];
   domainRenewals: DomainCount[];
   expiredDomains: DomainExpired[];
@@ -39,6 +60,9 @@ export const MetricsContext = createContext<MetricsConfig>({
   nineNineClub: 0,
   tripleNineClub: 0,
   tenKClub: 0,
+  braavosClub: 0,
+  ogClub: 0,
+  everaiClub: 0,
   domainRegistrations: [],
   domainRenewals: [],
   expiredDomains: [],
@@ -46,7 +70,7 @@ export const MetricsContext = createContext<MetricsConfig>({
   changeRange: () => {},
   periodRangeForCharts: { since: 0, end: 0, segments: 1 },
   currentPeriodRange: { since: 0, end: 0, segments: 1 },
-})
+});
 
 export const MetricsProvider = ({ children }: { children: any }) => {
   const [period, setPeriod] = useState<Period>(Period.MONTHLY);
@@ -57,15 +81,33 @@ export const MetricsProvider = ({ children }: { children: any }) => {
 
   const currentPeriodRange = useMemo(() => {
     return periodRangeForStats[period];
-  }, [period, periodRangeForStats])
+  }, [period, periodRangeForStats]);
 
-  const { domainsCreated } = useGetDomains({ periodRange: currentPeriodRange, period });
-  const { identitiesCreated } = useGetIdentities({ periodRange: currentPeriodRange, period });
-  const { uniqueAddresses } = useGetUniqueAddresses({ periodRange: currentPeriodRange, period });
-  const { countPerClub } = useGetClubMetric({ periodRange: periodRangeForCharts, period });
-  const { domainRegistrations } = useGetDomainRegistrations({ periodRange: periodRangeForCharts, period });
+  const { domainsCreated } = useGetDomains({
+    periodRange: currentPeriodRange,
+    period,
+  });
+  const { identitiesCreated } = useGetIdentities({
+    periodRange: currentPeriodRange,
+    period,
+  });
+  const { uniqueAddresses } = useGetUniqueAddresses({
+    periodRange: currentPeriodRange,
+    period,
+  });
+  const { countPerClub } = useGetClubMetric({
+    periodRange: periodRangeForCharts,
+    period,
+  });
+  const { domainRegistrations } = useGetDomainRegistrations({
+    periodRange: periodRangeForCharts,
+    period,
+  });
   const { expiredDomains } = useGetExpiredClubDomains();
-  const { domainRenewed } = useGetDomainRenewals({ periodRange: periodRangeForCharts, period });
+  const { domainRenewed } = useGetDomainRenewals({
+    periodRange: periodRangeForCharts,
+    period,
+  });
 
   const countPerClubMap = useMemo(() => {
     let initialData = {
@@ -76,25 +118,34 @@ export const MetricsProvider = ({ children }: { children: any }) => {
       nineNineClub: 0,
       tripleNineClub: 0,
       tenKClub: 0,
-    }
-    if(!countPerClub) return initialData;
+      braavosClub: 0,
+      ogClub: 0,
+      everaiClub: 0,
+    };
+    if (!countPerClub) return initialData;
     return dataToCountPerClub(countPerClub);
-  }, [countPerClub])
+  }, [countPerClub]);
 
-  const handlePeriodChange = useCallback((newPeriod: Period) => {
-    if(!newPeriod) {
-      return;
-    }
-    setPeriod(newPeriod);
-  }, [setPeriod])
+  const handlePeriodChange = useCallback(
+    (newPeriod: Period) => {
+      if (!newPeriod) {
+        return;
+      }
+      setPeriod(newPeriod);
+    },
+    [setPeriod]
+  );
 
-  const handleRangeChange = useCallback((newRange: Range) => {
-    if(!newRange) {
-      return;
-    }
-    setRange(newRange);
-  }, [setRange])
-  
+  const handleRangeChange = useCallback(
+    (newRange: Range) => {
+      if (!newRange) {
+        return;
+      }
+      setRange(newRange);
+    },
+    [setRange]
+  );
+
   const contextValues = useMemo(() => {
     return {
       period,
@@ -109,20 +160,36 @@ export const MetricsProvider = ({ children }: { children: any }) => {
       nineNineClub: countPerClubMap.nineNineClub,
       tripleNineClub: countPerClubMap.tripleNineClub,
       tenKClub: countPerClubMap.tenKClub,
-      domainRegistrations: domainRegistrations as [] || [],
-      domainRenewals: domainRenewed as [] || [],
-      expiredDomains: expiredDomains as [] || [],
+      braavosClub: countPerClubMap.braavosClub,
+      ogClub: countPerClubMap.ogClub,
+      everaiClub: countPerClubMap.everaiClub,
+      domainRegistrations: (domainRegistrations as []) || [],
+      domainRenewals: (domainRenewed as []) || [],
+      expiredDomains: (expiredDomains as []) || [],
       changePeriod: handlePeriodChange,
       changeRange: handleRangeChange,
       periodRangeForCharts,
       currentPeriodRange,
-    }
-  }, 
-  [period, range, countPerClubMap, domainRegistrations, domainRenewed, expiredDomains, periodRangeForCharts, currentPeriodRange, domainsCreated, identitiesCreated, uniqueAddresses, handlePeriodChange, handleRangeChange]);
+    };
+  }, [
+    period,
+    range,
+    countPerClubMap,
+    domainRegistrations,
+    domainRenewed,
+    expiredDomains,
+    periodRangeForCharts,
+    currentPeriodRange,
+    domainsCreated,
+    identitiesCreated,
+    uniqueAddresses,
+    handlePeriodChange,
+    handleRangeChange,
+  ]);
 
   return (
     <MetricsContext.Provider value={contextValues}>
       {children}
     </MetricsContext.Provider>
-  )
-}
+  );
+};
