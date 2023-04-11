@@ -84,7 +84,6 @@ export const useGetClubMetric = ({
       });
     },
   });
-  console.log("query.data", query.data);
   return { ...query, countPerClub: query.data };
 };
 
