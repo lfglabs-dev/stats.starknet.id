@@ -38,6 +38,7 @@ interface MetricsConfig {
   braavosClub: number;
   ogClub: number;
   everaiClub: number;
+  onsheetClub: number;
   domainRegistrations: DomainCount[];
   domainRenewals: DomainCount[];
   expiredDomains: DomainExpired[];
@@ -63,6 +64,7 @@ export const MetricsContext = createContext<MetricsConfig>({
   braavosClub: 0,
   ogClub: 0,
   everaiClub: 0,
+  onsheetClub: 0,
   domainRegistrations: [],
   domainRenewals: [],
   expiredDomains: [],
@@ -121,6 +123,7 @@ export const MetricsProvider = ({ children }: { children: any }) => {
       braavosClub: 0,
       ogClub: 0,
       everaiClub: 0,
+      onsheetClub: 0,
     };
     if (!countPerClub) return initialData;
     return dataToCountPerClub(countPerClub);
@@ -163,6 +166,7 @@ export const MetricsProvider = ({ children }: { children: any }) => {
       braavosClub: countPerClubMap.braavosClub,
       ogClub: countPerClubMap.ogClub,
       everaiClub: countPerClubMap.everaiClub,
+      onsheetClub: countPerClubMap.onsheetClub,
       domainRegistrations: (domainRegistrations as []) || [],
       domainRenewals: (domainRenewed as []) || [],
       expiredDomains: (expiredDomains as []) || [],
