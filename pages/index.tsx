@@ -3,16 +3,16 @@ import type { NextPage } from "next";
 import { StatCard } from "../components/cards/StatCard";
 import styles from "../styles/Home.module.css";
 import { Chart } from "../components/charts/Chart";
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
 import { formatValue } from "../utils/format";
 import { DataInfo, DataTable } from "../components/tables/DataTable";
 import { TablePagination } from "../components/tables/TablePagination";
 import { FilterButton } from "../components/buttons/FIlterButton";
-import { useMetrics } from "../hooks/useMetrics";
 import { Club, Period, Range } from "../types/metrics";
 import { useTable } from "../hooks/useTable";
 import { domainCountToDataChart } from "../utils/domainCountToDataChart";
 import { clubToString } from "../utils/clubToString";
+import { MetricsContext } from "../contexts/MetricsProvider";
 
 const Home: NextPage = () => {
   const {
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
     domainRenewals,
     changePeriod,
     changeRange,
-  } = useMetrics();
+  } = useContext(MetricsContext);
 
   const tableDataOrdered = useMemo(() => {
     return expiredDomains.map((domain) => ({
