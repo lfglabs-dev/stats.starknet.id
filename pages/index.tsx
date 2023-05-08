@@ -32,6 +32,7 @@ const Home: NextPage = () => {
     ogClub,
     everaiClub,
     onsheetClub,
+    xplorerClub,
     domainRegistrations,
     expiredDomains,
     domainRenewals,
@@ -144,6 +145,7 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.row}>
             <StatCard title="StarkSheet Subdomains" statValue={onsheetClub} />
+            <StatCard title="Xplorer Subdomains" statValue={xplorerClub} />
           </div>
         </div>
       </div>
