@@ -35,6 +35,7 @@ export enum Club {
   OG_CLUB = "og",
   EVERAI_CLUB = "everai",
   ONSHEET_CLUB = "onsheet",
+  XPLORER_CLUB = "xplorer",
 }
 
 export enum Period {

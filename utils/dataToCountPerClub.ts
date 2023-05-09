@@ -12,6 +12,7 @@ export type CountPerClub = {
   ogClub: number;
   everaiClub: number;
   onsheetClub: number;
+  xplorerClub: number;
 };
 
 export const dataToCountPerClub = (data: DomainPerClub[]): CountPerClub => {
@@ -27,6 +28,7 @@ export const dataToCountPerClub = (data: DomainPerClub[]): CountPerClub => {
     ogClub: 0,
     everaiClub: 0,
     onsheetClub: 0,
+    xplorerClub: 0,
   };
 
   data.forEach((d) => {
@@ -63,6 +65,9 @@ export const dataToCountPerClub = (data: DomainPerClub[]): CountPerClub => {
         break;
       case Club.ONSHEET_CLUB:
         initialData.onsheetClub = d.count || 0;
+        break;
+      case Club.XPLORER_CLUB:
+        initialData.xplorerClub = d.count || 0;
         break;
       default:
         return initialData;
