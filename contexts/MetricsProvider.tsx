@@ -80,8 +80,8 @@ export const MetricsProvider = ({ children }: { children: any }) => {
   const [period, setPeriod] = useState<Period>(Period.MONTHLY);
   const [range, setRange] = useState<Range>(Range.ALL);
 
-  const periodRangeForCharts = getPeriodInformation(range);
-  const periodRangeForStats = getPeriodInformationForStats();
+  const periodRangeForCharts = useMemo(() => getPeriodInformation(range), []);
+  const periodRangeForStats = useMemo(() => getPeriodInformationForStats(), []);
 
   const currentPeriodRange = useMemo(() => {
     return periodRangeForStats[period];
