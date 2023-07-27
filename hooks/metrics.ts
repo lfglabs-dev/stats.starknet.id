@@ -9,6 +9,7 @@ import {
   PeriodRange,
 } from "../types/metrics";
 import { fetchApi, methods } from "./fetchApi";
+import { domainCountToDataChart } from "../utils/domainCountToDataChart";
 
 interface UseGetMetricsDataProps {
   periodRange: PeriodRange;
@@ -30,7 +31,7 @@ export const useGetDomains = ({
       });
     },
   });
-  return { ...query, domainsCreated: query.data?.count };
+  return { ...query, domainsCreated: query.data?.count ?? 0 };
 };
 
 export const useGetIdentities = ({
@@ -48,7 +49,7 @@ export const useGetIdentities = ({
       });
     },
   });
-  return { ...query, identitiesCreated: query.data?.count };
+  return { ...query, identitiesCreated: query.data?.count ?? 0 };
 };
 
 export const useGetUniqueAddresses = ({
@@ -66,7 +67,7 @@ export const useGetUniqueAddresses = ({
       });
     },
   });
-  return { ...query, uniqueAddresses: query.data?.count };
+  return { ...query, uniqueAddresses: query.data?.count ?? 0 };
 };
 
 export const useGetClubMetric = ({
@@ -104,6 +105,7 @@ export const useGetExpiredClubDomains = () => {
 
 export const useGetDomainRegistrations = ({
   periodRange,
+  period,
 }: UseGetMetricsDataProps) => {
   const uri = "/count_created";
 
@@ -116,11 +118,12 @@ export const useGetDomainRegistrations = ({
       });
     },
   });
-  return { ...query, domainRegistrations: query.data };
+  return { ...query, domainRegistrations: domainCountToDataChart(query.data ?? [], period)};
 };
 
 export const useGetDomainRenewals = ({
   periodRange,
+  period,
 }: UseGetMetricsDataProps) => {
   const uri = "/count_renewed";
 
@@ -133,5 +136,5 @@ export const useGetDomainRenewals = ({
       });
     },
   });
-  return { ...query, domainRenewed: query.data };
+  return { ...query, domainRenewed: domainCountToDataChart(query.data ?? [], period) };
 };
