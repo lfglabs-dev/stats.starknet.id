@@ -1,7 +1,6 @@
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import { Period, PeriodRange } from "../../types/metrics";
 import { useGetDomainRegistrations, useGetDomainRenewals } from "../../hooks/metrics";
-import { domainCountToDataChart } from "../../utils/domainCountToDataChart";
 import styles from "../../styles/Home.module.css";
 import { Chart } from "../charts/Chart";
 import { formatValue } from "../../utils/format";
@@ -12,23 +11,15 @@ interface ChartsSectionProps {
   periodRange: PeriodRange;
 }
 export const ChartsSection: FC<ChartsSectionProps> = ({ period, periodRange }) => {
-  const { domainRegistrations, isLoading: domainRegistrationsIsLoading } = useGetDomainRegistrations({
+  const { domainRegistrations } = useGetDomainRegistrations({
     periodRange: periodRange,
     period,
   });
   
-  const { domainRenewed, isLoading: domainRenewedIsLoading } = useGetDomainRenewals({
+  const { domainRenewed } = useGetDomainRenewals({
     periodRange: periodRange,
     period,
   });
-  
-  const domainDataChart = useMemo(() => {
-    return domainCountToDataChart(domainRegistrations ?? [], period);
-  }, [domainRegistrations, period]);
-
-  const domainRenewalDataChart = useMemo(() => {
-    return domainCountToDataChart(domainRenewed ?? [], period);
-  }, [domainRenewed, period]);
 
   return (
     <div className={styles.row}>
@@ -37,7 +28,7 @@ export const ChartsSection: FC<ChartsSectionProps> = ({ period, periodRange }) =
         series={[
           {
             name: "Domains created",
-            data: domainDataChart,
+            data: domainRegistrations,
           },
         ]}
         formatter={(value) => formatValue(value)}
@@ -47,7 +38,7 @@ export const ChartsSection: FC<ChartsSectionProps> = ({ period, periodRange }) =
         series={[
           {
             name: "Domain renewed",
-            data: domainRenewalDataChart,
+            data: domainRenewed,
           },
         ]}
         formatter={(value) => formatValue(value)}
