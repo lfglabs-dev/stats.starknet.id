@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 interface UseTableProps<T> {
   data: T[];
@@ -6,20 +6,20 @@ interface UseTableProps<T> {
 }
 
 export const useTable = <T>({ data, limit }: UseTableProps<T>) => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(limit || 15);
+  const [page, setPage] = useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(limit || 15);
   const numberOfPages = useMemo(() => {
     return Math.ceil(data.length / rowsPerPage) - 1;
   }, [data, rowsPerPage])
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = useCallback((event: unknown, newPage: number) => {
     setPage(newPage);
-  };
+  }, [setPage]);
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  };
+  }, [setRowsPerPage, setPage]);
 
   return {
     page,
