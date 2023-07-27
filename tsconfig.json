@@ -16,6 +16,6 @@
     "incremental": true,
     "jsxImportSource": "@emotion/react",
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/createEmotionCache.ts"],
+  "include": ["src/**/*", "next-env.d.ts", "**/*.ts", "**/*.tsx", "src/createEmotionCache.ts"],
   "exclude": ["node_modules"]
 }

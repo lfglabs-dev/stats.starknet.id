@@ -25,11 +25,11 @@ const App: FC<MyAppProps> = ({
     <CacheProvider value={emotionCache}>
       <QueryClientProvider client={queryClient}>
         <CssBaseline />
-          <Head>
-            <title>Dashboard.Starknet.id</title>
-          </Head>
-          <Navbar />
-          <Component className="relative" {...pageProps} />
+        <Head>
+          <title>Dashboard.Starknet.id</title>
+        </Head>
+        <Navbar />
+        <Component className="relative" {...pageProps} />
       </QueryClientProvider>
     </CacheProvider>
   );
