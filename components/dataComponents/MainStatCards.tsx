@@ -28,13 +28,13 @@ export const MainStatCards: FC<MainStatCardsProps> = ({ period, periodRange }) =
 
   return (
     <div className={styles.row}>
-      <StatCard title="Domains created" statValue={domainsCreated ?? 0}  isLoading={domainIsLoading} />
+      <StatCard title="Domains created" statValue={domainsCreated}  isLoading={domainIsLoading} />
       <StatCard
         title="Identities created"
-        statValue={identitiesCreated ?? 0}
+        statValue={identitiesCreated}
         isLoading={identitiesIsLoading}
       />
-      <StatCard title="Unique addresses" statValue={uniqueAddresses ?? 0} isLoading={uniqueAddressIsLoading} />
+      <StatCard title="Unique addresses" statValue={uniqueAddresses} isLoading={uniqueAddressIsLoading} />
     </div>
   )
 }
