@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import {
   Club,
   DomainCreatedResponse,
@@ -22,7 +22,7 @@ export const useGetDomains = ({
   const uri = "/count_domains";
 
   const query = useQuery<DomainCreatedResponse, Error>({
-    queryKey: [uri, period],
+    queryKey: [uri, period, periodRange.since],
     queryFn: async (): Promise<DomainCreatedResponse> => {
       return fetchApi({
         uri: `${uri}?since=${periodRange.since}`,
