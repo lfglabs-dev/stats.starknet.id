@@ -1,65 +1,48 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
-import { StatCard } from "../components/cards/StatCard";
 import styles from "../styles/Home.module.css";
-import { Chart } from "../components/charts/Chart";
-import { useContext, useMemo } from "react";
-import { formatValue } from "../utils/format";
-import { DataInfo, DataTable } from "../components/tables/DataTable";
-import { TablePagination } from "../components/tables/TablePagination";
+import { useCallback, useMemo, useState } from "react";
 import { FilterButton } from "../components/buttons/FIlterButton";
-import { Club, Period, Range } from "../types/metrics";
-import { useTable } from "../hooks/useTable";
-import { domainCountToDataChart } from "../utils/domainCountToDataChart";
-import { clubToString } from "../utils/clubToString";
-import { MetricsContext } from "../contexts/MetricsProvider";
+import { Period, Range } from "../types/metrics";
+import { MainStatCards } from "../components/dataComponents/MainStatCards";
+import { ClubStatCards } from "../components/dataComponents/ClubStatCards";
+import { ExpiredDomainsTable } from "../components/dataComponents/ExpiredDomainsTable";
+import { ChartsSection } from "../components/dataComponents/ChartsSection";
+import { getPeriodInformation, getPeriodInformationForStats } from "../utils/period";
+
+const PERIOD_INFORMATION_FOR_STATS = getPeriodInformationForStats();
 
 const Home: NextPage = () => {
-  const {
-    period,
-    range,
-    domainsCreated,
-    identitiesCreated,
-    uniqueAddresses,
-    oneLetter,
-    twoLetters,
-    threeLetters,
-    fourLetters,
-    nineNineClub,
-    tripleNineClub,
-    tenKClub,
-    braavosClub,
-    ogClub,
-    everaiClub,
-    onsheetClub,
-    xplorerClub,
-    domainRegistrations,
-    expiredDomains,
-    domainRenewals,
-    changePeriod,
-    changeRange,
-  } = useContext(MetricsContext);
+  const [period, setPeriod] = useState<Period>(Period.MONTHLY);
+  const [range, setRange] = useState<Range>(Range.ALL);
 
-  const tableDataOrdered = useMemo(() => {
-    return expiredDomains.map((domain) => ({
-      ...domain,
-      club: clubToString(domain.club as Club),
-    }));
-  }, [expiredDomains]);
+  const periodRangeForCharts = useMemo(() => {
+    return getPeriodInformation(range);
+  }, [range]);
 
-  const {
-    data: tableData,
-    numberOfPages,
-    handleChangePage,
-  } = useTable<DataInfo>({ data: tableDataOrdered, limit: 10 });
+  const currentPeriodRange = useMemo(() => {
+    return PERIOD_INFORMATION_FOR_STATS[period];
+  }, [period]);
 
-  const domainDataChart = useMemo(() => {
-    return domainCountToDataChart(domainRegistrations, period);
-  }, [domainRegistrations, period]);
+  const handlePeriodChange = useCallback(
+    (newPeriod: Period) => {
+      if (!newPeriod) {
+        return;
+      }
+      setPeriod(newPeriod);
+    },
+    [setPeriod]
+  );
 
-  const domainRenewalDataChart = useMemo(() => {
-    return domainCountToDataChart(domainRenewals, period);
-  }, [domainRenewals, period]);
+  const handleRangeChange = useCallback(
+    (newRange: Range) => {
+      if (!newRange) {
+        return;
+      }
+      setRange(newRange);
+    },
+    [setRange]
+  );
 
   const filterValues = [
     Period.DAILY,
@@ -80,74 +63,25 @@ const Home: NextPage = () => {
                 <FilterButton<Period>
                   value={period}
                   possibleValues={filterValues}
-                  onChange={changePeriod}
+                  onChange={handlePeriodChange}
                 />
               </div>
               <div className="m-2">
                 <FilterButton<Range>
                   value={range}
                   possibleValues={rangeValues}
-                  onChange={changeRange}
+                  onChange={handleRangeChange}
                 />
               </div>
             </div>
           </div>
-          <div className={styles.row}>
-            <StatCard title="Domains created" statValue={domainsCreated} />
-            <StatCard
-              title="Identities created"
-              statValue={identitiesCreated}
-            />
-            <StatCard title="Unique addresses" statValue={uniqueAddresses} />
-          </div>
-          <div className={styles.row}>
-            <Chart
-              title="Amount of domain registrations"
-              series={[
-                {
-                  name: "Domains created",
-                  data: domainDataChart,
-                },
-              ]}
-              formatter={(value) => formatValue(value)}
-            />
-            <Chart
-              title="Amount of domain renewals"
-              series={[
-                {
-                  name: "Domain renewed",
-                  data: domainRenewalDataChart,
-                },
-              ]}
-              formatter={(value) => formatValue(value)}
-            />
-          </div>
+          <MainStatCards period={period} periodRange={currentPeriodRange} />
+          <ChartsSection  period={period} periodRange={periodRangeForCharts} />
         </div>
       </div>
 
       <div className={styles.section2}>
-        <div className={styles.column}>
-          <h1 className={styles.title}>Clubs</h1>
-          <div className={styles.row}>
-            <StatCard title="1 letter" statValue={oneLetter} />
-            <StatCard title="2 letters" statValue={twoLetters} />
-            <StatCard title="3 letters" statValue={threeLetters} />
-          </div>
-          <div className={styles.row}>
-            <StatCard title="99 Club" statValue={nineNineClub} />
-            <StatCard title="999 Club" statValue={tripleNineClub} />
-            <StatCard title="4 letters" statValue={fourLetters} />
-          </div>
-          <div className={styles.row}>
-            <StatCard title="Braavos Subdomains" statValue={braavosClub} />
-            <StatCard title="OG Subdomains" statValue={ogClub} />
-            <StatCard title="Everai Subdomains" statValue={everaiClub} />
-          </div>
-          <div className={styles.row}>
-            <StatCard title="StarkSheet Subdomains" statValue={onsheetClub} />
-            <StatCard title="Xplorer Subdomains" statValue={xplorerClub} />
-          </div>
-        </div>
+        <ClubStatCards period={period} periodRange={currentPeriodRange} />
       </div>
       <div className={styles.section3}>
         <div className={styles.bottomLeftLeaf}>
@@ -156,15 +90,7 @@ const Home: NextPage = () => {
         <div className={styles.bottomRightLeaf}>
           <img width="100%" alt="leaf" src="/assets/leavesGroup01.svg" />
         </div>
-
-        <div className={styles.column}>
-          <h1 className={styles.title}>Recently expired</h1>
-          <DataTable data={tableData} />
-          <TablePagination
-            numberOfPages={numberOfPages}
-            onClick={handleChangePage}
-          />
-        </div>
+        <ExpiredDomainsTable />
       </div>
     </div>
   );

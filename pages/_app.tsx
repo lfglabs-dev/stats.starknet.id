@@ -3,7 +3,6 @@ import type { AppProps } from "next/app";
 import { FC } from "react";
 import Head from "next/head";
 import { Navbar } from "../components/layouts/Navbar";
-import { MetricsProvider } from "../contexts/MetricsProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import createEmotionCache from "../src/createEmotionCache";
 import { CacheProvider, EmotionCache } from "@emotion/react";
@@ -26,13 +25,11 @@ const App: FC<MyAppProps> = ({
     <CacheProvider value={emotionCache}>
       <QueryClientProvider client={queryClient}>
         <CssBaseline />
-        <MetricsProvider>
-          <Head>
-            <title>Dashboard.Starknet.id</title>
-          </Head>
-          <Navbar />
-          <Component className="relative" {...pageProps} />
-        </MetricsProvider>
+        <Head>
+          <title>Dashboard.Starknet.id</title>
+        </Head>
+        <Navbar />
+        <Component className="relative" {...pageProps} />
       </QueryClientProvider>
     </CacheProvider>
   );

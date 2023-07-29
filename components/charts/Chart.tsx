@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
 import { baseChartOptions } from "../../utils/baseChartOptions";
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import style from '../../styles/Chart.module.css';
 
 interface ChartProps {
@@ -12,12 +12,11 @@ interface ChartProps {
 }
 
 export const Chart: FC<ChartProps> = ({ series, formatter, customOptions, title }) => {
-
   const ApexCharts = dynamic(() => import('react-apexcharts'), { ssr: false });
 
   const MemoizedApexCharts = React.memo(ApexCharts);
 
-  const options = {
+  const options = useMemo(() => ({
     series,
     options: {
       ...baseChartOptions,
@@ -30,7 +29,7 @@ export const Chart: FC<ChartProps> = ({ series, formatter, customOptions, title 
       },
       ...customOptions
     }
-  }
+  }), [series, formatter, customOptions]);
 
   return (
     <div className={style.container}>
