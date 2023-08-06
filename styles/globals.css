@@ -14,8 +14,17 @@
   --brown: #402d28;
   --soft-brown: #bf9e7b;
   --beige: #fff9f0;
+  --tertiary: #eae0d5;
   --lightGreen: #98f5ce;
   --nimiq-ease: cubic-bezier(0.25, 0, 0, 1);
+  --background-light: #fffcf8;
+  --box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
+  --gray: #454545;
+  --gray-700: #6d696a;
+  --gray-500: #b0aeae;
+  --gray-400: #cdcccc;
+  --gray-300: #f8f7f7;
+  --gray-light: #e2dfde;
 }
 
 html,
@@ -24,13 +33,6 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-h1 {
-  font-family: "QuickZap";
-  font-size: 8em;
-  color: var(--green);
-  text-shadow: 4px 4px var(--soft-brown);
 }
 
 a {
@@ -81,8 +83,8 @@ a {
 }
 
 .Mui-selected {
-  background-color: var(--soft-brown) !important;
-  color: black !important;
+  background-color: var(--green) !important;
+  color: white !important;
 }
 
 @media (prefers-color-scheme: dark) {

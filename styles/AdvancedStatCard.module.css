@@ -1,0 +1,67 @@
+.card {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  width: 33%;
+  background-color: var(--background-light);
+  display: flex;
+  box-shadow: var(--box-shadow);
+  align-items: center;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--gray-700);
+  font-weight: 600;
+}
+
+.valueLabel {
+  font-family: "QuickZap";
+  font-size: 3em;
+  color: var(--gray);
+}
+
+.loader {
+  color: var(--green);
+  margin-top: 2rem;
+}
+
+@media (max-width: 1360px) {
+  .card {
+    padding: 1rem;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1360px) {
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .valueLabel {
+    font-size: 2em;
+  }
+}
+.icon {
+  margin-left: auto;
+  width: 48px;
+  height: 48px;
+  padding: 10px;
+  background-color: var(--tertiary);
+  border-radius: 0.8rem;
+}
+
+.progress {
+  color: var(--green);
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.progress.negative {
+  color: #d21313;
+}

@@ -7,7 +7,11 @@ interface FilterButtonProps<T> {
   onChange: (value: T) => void;
 }
 
-export function FilterButton<T>({value, possibleValues, onChange }: FilterButtonProps<T>) {
+export function FilterButton<T>({
+  value,
+  possibleValues,
+  onChange,
+}: FilterButtonProps<T>) {
   return (
     <ToggleButtonGroup
       color="primary"
@@ -18,8 +22,14 @@ export function FilterButton<T>({value, possibleValues, onChange }: FilterButton
       className={style.toggleButtonGroup}
     >
       {possibleValues.map((value) => (
-        <ToggleButton className={style.toggleButton} key={value as string} value={value as string}>{value as string}</ToggleButton>
+        <ToggleButton
+          className={style.toggleButton}
+          key={value as string}
+          value={value as string}
+        >
+          {value as string}
+        </ToggleButton>
       ))}
     </ToggleButtonGroup>
-  )
+  );
 }
