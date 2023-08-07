@@ -1,11 +1,50 @@
 .toggleButtonGroup {
-  border-radius: 30px;
+  box-shadow: var(--box-shadow);
+  border-radius: 8px;
 }
 
 .toggleButton {
-  border: 1px solid var(--soft-brown);
-  background-color: var(--soft-brown);
-  border-radius: 30px;
-  padding: 0.5rem;
-  font-family: "QuickZap";
+  border: none;
+  background-color: var(--background-light);
+  padding: 0.8rem;
+  font-weight: bold;
+  color: var(--gray);
+  text-transform: capitalize;
+}
+
+.toggleButton + .toggleButton::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 20px;
+  background-color: var(--gray-light);
+}
+
+.toggleButton[aria-pressed="true"],
+.toggleButton:hover {
+  background-color: var(--green) !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+.toggleButton[aria-pressed="true"] + .toggleButton::after,
+.toggleButton[aria-pressed="true"]::after,
+.toggleButton:hover + .toggleButton::after,
+.toggleButton:hover::after {
+  display: none;
+}
+
+.toggleButton:hover + .toggleButton[aria-pressed="true"],
+.toggleButton[aria-pressed="true"] + .toggleButton:hover {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.toggleButton:hover:has(+ .toggleButton[aria-pressed="true"]),
+.toggleButton[aria-pressed="true"]:has(+ .toggleButton:hover) {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }

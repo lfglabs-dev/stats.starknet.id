@@ -118,7 +118,10 @@ export const useGetDomainRegistrations = ({
       });
     },
   });
-  return { ...query, domainRegistrations: domainCountToDataChart(query.data ?? [], period)};
+  return {
+    ...query,
+    domainRegistrations: domainCountToDataChart(query.data ?? [], period),
+  };
 };
 
 export const useGetDomainRenewals = ({
@@ -136,5 +139,8 @@ export const useGetDomainRenewals = ({
       });
     },
   });
-  return { ...query, domainRenewed: domainCountToDataChart(query.data ?? [], period) };
+  return {
+    ...query,
+    domainRenewed: domainCountToDataChart(query.data ?? [], period),
+  };
 };

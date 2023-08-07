@@ -1,4 +1,16 @@
+.container {
+  margin-bottom: -10px;
+}
+
 .paginationItem {
-  color: var(--green);
-  font-family: "QuickZap";
+  background-color: var(--gray-300);
+  color: var(--brown);
+  font-weight: bold;
+  border-radius: 4px;
+  width: 10px;
+  margin-bottom: 10px;
+}
+
+div.paginationItem {
+  background-color: transparent;
 }

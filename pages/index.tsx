@@ -2,13 +2,16 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { useCallback, useMemo, useState } from "react";
-import { FilterButton } from "../components/buttons/FIlterButton";
+import { FilterButton } from "../components/buttons/FilterButton";
 import { Period, Range } from "../types/metrics";
 import { MainStatCards } from "../components/dataComponents/MainStatCards";
 import { ClubStatCards } from "../components/dataComponents/ClubStatCards";
 import { ExpiredDomainsTable } from "../components/dataComponents/ExpiredDomainsTable";
 import { ChartsSection } from "../components/dataComponents/ChartsSection";
-import { getPeriodInformation, getPeriodInformationForStats } from "../utils/period";
+import {
+  getPeriodInformation,
+  getPeriodInformationForStats,
+} from "../utils/period";
 
 const PERIOD_INFORMATION_FOR_STATS = getPeriodInformationForStats();
 
@@ -58,7 +61,7 @@ const Home: NextPage = () => {
       <div className={styles.section1}>
         <div className={styles.column}>
           <div className={styles.row}>
-            <div className="flex justify-center w-full flex-col sm:flex-row items-center">
+            <div className="flex justify-center w-full flex-col sm:flex-row items-center mb-4">
               <div className="m-2">
                 <FilterButton<Period>
                   value={period}
@@ -76,7 +79,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <MainStatCards period={period} periodRange={currentPeriodRange} />
-          <ChartsSection  period={period} periodRange={periodRangeForCharts} />
+          <ChartsSection period={period} periodRange={periodRangeForCharts} />
         </div>
       </div>
 

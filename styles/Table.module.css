@@ -1,25 +1,32 @@
 .tableCellTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: "QuickZap";
-  color: var(--brown);
+  color: var(--gray-700);
+  font-size: 1.2rem;
 }
 
 .tableCellLabel {
   font-size: 1rem;
   font-weight: 600;
-  font-family: "QuickZap";
-  color: var(--soft-brown);
+  color: var(--gray);
   border-bottom: none;
   cursor: pointer;
 }
 
-.tableCellLabel:hover {
-  text-decoration: underline;
+.tableRow {
+  position: relative;
 }
 
-.tableContainer {
-  width: 70%;
+.tableRow + .tableRow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--gray-400);
+  opacity: 0.2;
+}
+
+.tableCellLabel:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -30,8 +37,10 @@
   .tableCellTitle {
     font-size: 1.25rem;
   }
-
-  .tiableCellLabel {
-    font-size: 1rem;
+  .tableRow {
+    width: 40px;
+  }
+  .tableCellLabel {
+    width: calc(50vw - 1rem - 24px);
   }
 }
