@@ -78,7 +78,7 @@ export const MainStatCards: FC<MainStatCardsProps> = ({
         const dataType = toFetch[index];
         const uri = `/count_${dataType.name}`;
         const res = await fetchApi({
-          // TODO: Use an "end" or "until" in addition to "since" to avoid counting data that is not in the period
+          // TODO: Use an "end" or "until" param in addition to the "since" one to avoid counting data that is not in the period
           uri: `${uri}?since=${Math.floor(oldPeriodRange.since)}`,
           method: methods.GET,
         });
