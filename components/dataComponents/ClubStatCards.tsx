@@ -1,8 +1,5 @@
 import { FC, useMemo } from "react";
-import {
-  useGetClubMetric,
-  useGetExpiredClubDomains,
-} from "../../hooks/metrics";
+import { useGetClubMetric } from "../../hooks/metrics";
 import { Period, PeriodRange } from "../../types/metrics";
 import styles from "../../styles/Home.module.css";
 import { StatCard } from "../cards/StatCard";

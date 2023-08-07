@@ -1,5 +1,5 @@
-import { FC, useEffect, useMemo } from "react";
-import { Club, Period, PeriodRange } from "../../types/metrics";
+import { FC, useMemo } from "react";
+import { Club } from "../../types/metrics";
 import { useGetExpiredClubDomains } from "../../hooks/metrics";
 import styles from "../../styles/Home.module.css";
 import { DataInfo, DataTable } from "../tables/DataTable";

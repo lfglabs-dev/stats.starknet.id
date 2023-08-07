@@ -1,5 +1,4 @@
 import { Pagination, PaginationItem } from "@mui/material";
-
 import { FC } from "react";
 import style from "../../styles/Pagination.module.css";
 
