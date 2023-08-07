@@ -2,7 +2,7 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 import { useCallback, useMemo, useState } from "react";
-import { FilterButton } from "../components/buttons/FIlterButton";
+import { FilterButton } from "../components/buttons/F-lterButton";
 import { Period, Range } from "../types/metrics";
 import { MainStatCards } from "../components/dataComponents/MainStatCards";
 import { ClubStatCards } from "../components/dataComponents/ClubStatCards";
