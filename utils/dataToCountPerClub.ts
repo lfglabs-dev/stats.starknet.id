@@ -32,42 +32,43 @@ export const dataToCountPerClub = (data: DomainPerClub[]): CountPerClub => {
   };
 
   data.forEach((d) => {
-    switch (d.club) {
+    const [key, value] = Object.entries(d)[0];
+    switch (key) {
       case Club.ONE_LETTER:
-        initialData.oneLetter = d.count || 0;
+        initialData.oneLetter = (value as number) || 0;
         break;
       case Club.TWO_LETTER:
-        initialData.twoLetters = d.count || 0;
+        initialData.twoLetters = (value as number) || 0;
         break;
       case Club.THREE_LETTER:
-        initialData.threeLetters = d.count || 0;
+        initialData.threeLetters = (value as number) || 0;
         break;
       case Club.FOUR_LETTER:
-        initialData.fourLetters = d.count || 0;
+        initialData.fourLetters = (value as number) || 0;
         break;
       case Club.NINE_NINE:
-        initialData.nineNineClub = d.count || 0;
+        initialData.nineNineClub = (value as number) || 0;
         break;
       case Club.TRIPLE_NINE:
-        initialData.tripleNineClub = d.count || 0;
+        initialData.tripleNineClub = (value as number) || 0;
         break;
       case Club.TEN_K_CLUB:
-        initialData.tenKClub = d.count || 0;
+        initialData.tenKClub = (value as number) || 0;
         break;
       case Club.BRAAVOS_CLUB:
-        initialData.braavosClub = d.count || 0;
+        initialData.braavosClub = (value as number) || 0;
         break;
       case Club.OG_CLUB:
-        initialData.ogClub = d.count || 0;
+        initialData.ogClub = (value as number) || 0;
         break;
       case Club.EVERAI_CLUB:
-        initialData.everaiClub = d.count || 0;
+        initialData.everaiClub = (value as number) || 0;
         break;
       case Club.ONSHEET_CLUB:
-        initialData.onsheetClub = d.count || 0;
+        initialData.onsheetClub = (value as number) || 0;
         break;
       case Club.XPLORER_CLUB:
-        initialData.xplorerClub = d.count || 0;
+        initialData.xplorerClub = (value as number) || 0;
         break;
       default:
         return initialData;
