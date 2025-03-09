@@ -23,7 +23,7 @@ export const AdvancedStatCard: FC<StatCardProps> = ({
     <div className={style.card}>
       <div className="flex flex-col justify-between w-full gap-3">
         <div className="flex justify-between items-center w-full">
-          <h3 className={style.subtitle}>{title}</h3>
+          <h3 className={style.title}>{title}</h3>
           <img src={icon} alt="icon" className={style.icon} />
         </div>
         {isLoading ? (

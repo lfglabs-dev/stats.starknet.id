@@ -7,6 +7,11 @@
     font-family: "QuickZap";
     src: url(../public/font/quickzap.ttf);
   }
+
+  @font-face {
+    font-family: "Poppins";
+    src: url(../public/font/Poppins/Poppins-Regular.ttf);
+  }
 }
 
 :root {
