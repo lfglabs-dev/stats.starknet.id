@@ -68,6 +68,14 @@
   width: 70%;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 70%;
+  margin-top: 1rem;
+}
+
 .title {
   font-family: "QuickZap";
   font-size: 3rem;

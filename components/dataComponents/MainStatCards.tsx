@@ -45,28 +45,26 @@ export const MainStatCards: FC<MainStatCardsProps> = ({
   return (
     <div className={styles.row}>
       <AdvancedStatCard
-        title="Domains created"
+        title="Total Domains"
         statValue={domainsCreated}
         isLoading={domainIsLoading}
         progress={"0%"}
         progressDescription={`Since ${periodName}`}
-        icon="/icons/connexionIcon.svg"
       />
-      <AdvancedStatCard
+      {/* {/* <AdvancedStatCard
         title="Identities created"
         statValue={identitiesCreated}
         isLoading={identitiesIsLoading}
         progress={"0%"}
         progressDescription={`Since ${periodName}`}
         icon="/icons/webIdentitiesIcon.svg"
-      />
+      /> */}
       <AdvancedStatCard
         title="Unique addresses"
         statValue={uniqueAddresses}
         isLoading={uniqueAddressIsLoading}
         progress={"0%"}
         progressDescription={`Since ${periodName}`}
-        icon="/icons/crownIcon.svg"
       />
     </div>
   );

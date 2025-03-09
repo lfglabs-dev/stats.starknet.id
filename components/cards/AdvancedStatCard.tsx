@@ -8,7 +8,7 @@ interface StatCardProps {
   isLoading?: boolean;
   progress?: string;
   progressDescription?: string;
-  icon: string;
+  icon?: string;
 }
 
 export const AdvancedStatCard: FC<StatCardProps> = ({
@@ -17,29 +17,31 @@ export const AdvancedStatCard: FC<StatCardProps> = ({
   isLoading,
   progress,
   progressDescription,
-  icon,
+  icon = "/icons/infoIcon.png",
 }) => {
   return (
     <div className={style.card}>
-      <div className={style.text}>
-        <h3 className={style.subtitle}>{title}</h3>
+      <div className="flex flex-col justify-between w-full gap-3">
+        <div className="flex justify-between items-center w-full">
+          <h3 className={style.subtitle}>{title}</h3>
+          <img src={icon} alt="icon" className={style.icon} />
+        </div>
         {isLoading ? (
           <CircularProgress className={style.loader} />
         ) : (
           <>
             <p className={style.valueLabel}>{statValue}</p>
-            <span
+            {/* <span
               className={`${style.progress} ${
                 progress?.startsWith("-") && style.negative
               }`}
             >
               {progress}
             </span>
-            <label className={style.progressLabel}>{progressDescription}</label>
+            <label className={style.progressLabel}>{progressDescription}</label> */}
           </>
         )}
       </div>
-      <img src={icon} alt="icon" className={style.icon} />
     </div>
   );
 };
