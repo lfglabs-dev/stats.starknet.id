@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.filterContainer {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    width: fit-content;
+    margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .filterButton {
+    padding: 5px 25px;
+    border: none;
+    background: transparent;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #555;
+  }
+  
+  .filterButton.active {
+    background-color: #0B8A5D;
+    color: white;
+    border-radius: 10px;
+  }
+  
+  .filterButton:hover:not(.active) {
+    background-color: white;
+  }

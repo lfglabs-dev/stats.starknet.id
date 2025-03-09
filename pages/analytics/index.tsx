@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../../styles/Analytics.module.css';
 import SubdomainCard from '../../components/cards/SubdomainCard';
+import TimeFilter from '../../components/buttons/TimeFilterButton';
 
 const AnalyticsPage = () => {
     const handleFilterChange = (filter: any) => {
@@ -13,6 +14,7 @@ const AnalyticsPage = () => {
           <div className={styles.statsRow}>
             <SubdomainCard count={28145} />
           </div>
+          <TimeFilter onFilterChange={handleFilterChange} />
         </div>
     </div>
   );
