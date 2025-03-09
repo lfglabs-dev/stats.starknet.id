@@ -24,21 +24,11 @@ export const ChartsSection: FC<ChartsSectionProps> = ({ period, periodRange }) =
   return (
     <div className={styles.row}>
       <Chart
-        title="Amount of domain registrations"
+        title="Domains activities"
         series={[
           {
             name: "Domains created",
             data: domainRegistrations,
-          },
-        ]}
-        formatter={(value) => formatValue(value)}
-      />
-      <Chart
-        title="Amount of domain renewals"
-        series={[
-          {
-            name: "Domain renewed",
-            data: domainRenewed,
           },
         ]}
         formatter={(value) => formatValue(value)}

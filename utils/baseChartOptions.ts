@@ -68,8 +68,9 @@ export const baseChartOptions = {
       colors: '#19aa6e'
     }
   },
-  grid: {
-    show: false
+  markers: {
+    size: 6,
+    colors: ['#284028'],
   },
   fill: {
     type: 'gradient',

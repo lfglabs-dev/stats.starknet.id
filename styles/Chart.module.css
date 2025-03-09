@@ -30,10 +30,16 @@
   overflow: hidden;
 }
 
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--brown);
+  font-weight: 400;
+  color: var(--gray-600);
 }
 
 @media (max-width: 1360px) {
