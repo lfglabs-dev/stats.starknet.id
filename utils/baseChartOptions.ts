@@ -1,6 +1,6 @@
 export const baseChartOptions = {
   chart: {
-    height: 400,
+    height: 225,
     toolbar: {
       show: false
     },
@@ -24,7 +24,7 @@ export const baseChartOptions = {
       position: 'topRight',
     }
   },
-  colors: ['#19aa6e'],
+  colors: ['#4CBD8E'],
   dataLabels: {
     enabled: false
   },
@@ -72,18 +72,4 @@ export const baseChartOptions = {
     size: 6,
     colors: ['#284028'],
   },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shade: 'dark',
-      type: 'vertical',
-      shadeIntensity: 0.4,
-      gradientToColors: ['#98f5ce','#40f7ab','#19aa6e'],
-      inverseColors: false,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 50, 100],
-      colorStops: []
-    }
-  }
 }
