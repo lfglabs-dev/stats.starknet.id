@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Period, PeriodRange } from "../../types/metrics";
-import { useGetDomainRegistrations, useGetDomainRenewals } from "../../hooks/metrics";
+import { useGetDomainRegistrations } from "../../hooks/metrics";
 import styles from "../../styles/Home.module.css";
 import { Chart } from "../charts/Chart";
 import { formatValue } from "../../utils/format";
@@ -12,11 +12,6 @@ interface ChartsSectionProps {
 }
 export const ChartsSection: FC<ChartsSectionProps> = ({ period, periodRange }) => {
   const { domainRegistrations } = useGetDomainRegistrations({
-    periodRange: periodRange,
-    period,
-  });
-  
-  const { domainRenewed } = useGetDomainRenewals({
     periodRange: periodRange,
     period,
   });

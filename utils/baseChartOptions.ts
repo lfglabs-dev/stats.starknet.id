@@ -17,7 +17,7 @@ export const baseChartOptions = {
       format: 'dd MMMM yyyy'
     },
     style: {
-      fontSize: '14px'
+      fontSize: '12px'
     },
     fixed: {
       enabled: true,
@@ -28,15 +28,18 @@ export const baseChartOptions = {
   dataLabels: {
     enabled: false
   },
+  stroke: {
+    width: 3,
+  },
   xaxis: {
     type: 'category',
     tickAmount: 3,
     show: false,
     labels: {
       style: {
-        colors: 'black',
-        fontWeight: 600,
-        fontSize: '13px'
+        colors: '#8C8989',
+        fontWeight: 400,
+        fontSize: '12px'
       },
       datetimeFormatter: {
         year: 'yyyy',
@@ -55,21 +58,21 @@ export const baseChartOptions = {
   yaxis: {
     labels: {
       style: {
-        colors: 'black',
-        fontWeight: 700,
-        fontSize: '14px'
+        colors: '#8C8989',
+        fontWeight: 400,
+        fontSize: '12px'
       }
     }
   },
   legend: {
-    fontSize: '14px',
-    fontWeight: 700,
+    fontSize: '12px',
+    fontWeight: 400,
     labels: {
       colors: '#19aa6e'
     }
   },
   markers: {
-    size: 6,
+    size: 4,
     colors: ['#284028'],
   },
 }

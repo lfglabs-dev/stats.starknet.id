@@ -64,6 +64,7 @@ export const Chart: FC<ChartProps> = ({ series, formatter, customOptions, title 
             series={options.series as any}
             type="line"
             width="100%"
+            height={baseChartOptions.chart.height}
           />
         </div>
       </div>
