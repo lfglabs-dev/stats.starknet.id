@@ -33,8 +33,7 @@ export const baseChartOptions = {
   },
   xaxis: {
     type: 'category',
-    tickAmount: 3,
-    show: false,
+    tickAmount: 10,
     labels: {
       style: {
         colors: '#8C8989',
