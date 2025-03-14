@@ -30,10 +30,16 @@
   overflow: hidden;
 }
 
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--brown);
+  font-weight: 400;
+  color: var(--gray-600);
 }
 
 @media (max-width: 1360px) {
@@ -47,6 +53,13 @@
     font-size: 1rem;
   }
   .container {
-    padding: 32px 0;
+    padding: 32px 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column;
+    gap: 16px;
   }
 }

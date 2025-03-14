@@ -46,8 +46,8 @@ export enum Period {
 }
 
 export enum Range {
-  "30D" = "30D",
-  "90D" = "90D",
-  "180D" = "180D",
+  "7D" = "7D",
+  "1m" = "1m",
+  "Ytd" = "Ytd",
   ALL = "All",
 }
