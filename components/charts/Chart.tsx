@@ -1,8 +1,10 @@
 import dynamic from 'next/dynamic'
 import { ApexOptions } from 'apexcharts'
 import { baseChartOptions } from "../../utils/baseChartOptions";
-import React, { FC, useMemo } from 'react';
+import React, { FC, useCallback, useMemo, useState } from 'react';
 import style from '../../styles/Chart.module.css';
+import { Range } from '../../types/metrics';
+import { FilterButton } from '../buttons/FilterButton';
 
 interface ChartProps {
   title: string;
@@ -31,16 +33,38 @@ export const Chart: FC<ChartProps> = ({ series, formatter, customOptions, title 
     }
   }), [series, formatter, customOptions]);
 
+  const [range, setRange] = useState<Range>(Range.ALL);
+
+  const handleRangeChange = useCallback(
+    (newRange: Range) => {
+      if (!newRange) {
+        return;
+      }
+      setRange(newRange);
+    },
+    [setRange]
+  );
+
+  const rangeValues = [Range["7D"], Range["1m"], Range["Ytd"], Range.ALL];
+
   return (
     <div className={style.container}>
-      <p className={style.title}>{title}</p>
+      <div className={style.header}>
+        <p className={style.title}>{title}</p>
+        <FilterButton<Range>
+          value={range}
+          possibleValues={rangeValues}
+          onChange={handleRangeChange}
+        />
+      </div>
       <div className={style.widget}>
         <div className={style.chartWrapper}>
           <MemoizedApexCharts
             options={options.options as ApexOptions}
             series={options.series as any}
-            type="bar"
+            type="line"
             width="100%"
+            height={baseChartOptions.chart.height}
           />
         </div>
       </div>
