@@ -6,8 +6,8 @@
 .toggleButton {
   border: none;
   background-color: var(--background-light);
-  padding: 0.8rem;
-  font-weight: bold;
+  padding: 2px 16px;
+  font-weight: 400;
   color: var(--gray);
   text-transform: capitalize;
 }
