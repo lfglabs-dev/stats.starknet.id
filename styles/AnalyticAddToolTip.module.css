@@ -1,44 +1,39 @@
-
-
-.addtooltipContainer {
-  padding: 2rem;
-}
-
-.addtooltipContent {
-  max-width: 1024px;
-  margin: 0 auto;
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 .statsCard {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--background-light);
+  box-shadow: var(--box-shadow);
+  border-radius: 12px;
   padding: 1.5rem;
+  width: 584px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .statsHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
 }
 
 .statsTitle {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #6b6b6b;
 }
 
 .statsValue {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 0.5rem;
-}
+  font-family: "QuickZap";
+  font-size: 3rem;
+  color: var(--brown);
+  text-transform: uppercase;
 
-.subdomainsContainer {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .tooltipWrapper {
@@ -46,33 +41,30 @@
 }
 
 .tooltipIcon {
-  width: 20px;
-  height: 20px;
-  color: gray;
+  width: 18px;
+  height: 18px;
+  color: black;
   cursor: pointer;
 }
-
 .tooltipBox {
   position: absolute;
   right: 0;
   top: 100%;
-  margin-top: 24px;
-  width: 18rem;
+  margin-top: 10px;
+  width: 210px;
   background-color: #402d28;
   color: white;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 50;
+  height: 190px;
 }
 
 .tooltipText {
-  font-size: 1.25rem;
-  line-height: 1.25;
-}
-
-.graphSection {
-  height: 16rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 25px;
+  letter-spacing: 1px;
 }

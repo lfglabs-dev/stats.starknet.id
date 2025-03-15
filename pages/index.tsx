@@ -12,7 +12,7 @@ import {
   getPeriodInformation,
   getPeriodInformationForStats,
 } from "../utils/period";
-import { Addtooltip } from "./analytic/Addtooltip";
+import { AddToolTip } from "./analytic/Addtooltip";
 
 const PERIOD_INFORMATION_FOR_STATS = getPeriodInformationForStats();
 
@@ -80,6 +80,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <MainStatCards period={period} periodRange={currentPeriodRange} />
+          <AddToolTip />
           <ChartsSection period={period} periodRange={periodRangeForCharts} />
         </div>
       </div>
@@ -95,7 +96,6 @@ const Home: NextPage = () => {
           <img width="100%" alt="leaf" src="/assets/leavesGroup01.svg" />
         </div>
         <ExpiredDomainsTable />
-        <Addtooltip />
       </div>
     </div>
   );
