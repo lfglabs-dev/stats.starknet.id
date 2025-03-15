@@ -80,9 +80,6 @@ const Home: NextPage = () => {
             </div>
           </div>
           <MainStatCards period={period} periodRange={currentPeriodRange} />
-          <div className="flex flex-row w-[1385px] gap-4">
-            <SubdomainCard count={28145} />
-          </div>
           <ChartsSection period={period} periodRange={periodRangeForCharts} />
         </div>
       </div>

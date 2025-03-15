@@ -3,7 +3,8 @@
 .card {
     background-color: #ffffff;
     border-radius: 12px;
-    padding: 24px;
+    padding: 1.5rem;
+    margin: 1rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
@@ -44,6 +45,14 @@
     font-weight: 400;
     color: #333333;
     font-family: "Quickzap";
+  }
+
+  @media (max-width: 1360px) {
+    .card {
+      padding: 1rem;
+      width: calc(100% - 2rem);
+      margin: 1rem;
+    }
   }
   
   /* If you need to adjust for specific page layout */
