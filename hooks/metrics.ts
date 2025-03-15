@@ -109,7 +109,7 @@ export const useGetDomainRegistrations = ({
 }: UseGetMetricsDataProps) => {
   const uri = "/count_created";
 
-  const query = useQuery<DomainCount[], Error>({
+  /*const query = useQuery<DomainCount[], Error>({
     queryKey: [uri, periodRange],
     queryFn: async (): Promise<DomainCount[]> => {
       return fetchApi({
@@ -118,9 +118,26 @@ export const useGetDomainRegistrations = ({
       });
     },
   });
+
   return {
     ...query,
     domainRegistrations: domainCountToDataChart(query.data ?? [], period),
+  };*/
+  // TODO: Implement the API.
+  // For now, return random data.
+  return {
+    domainRegistrations: [
+      { x: 'Nov 21', y: 0 },
+      { x: 'Nov 22', y: 0 },
+      { x: 'Nov 23', y: 15 },
+      { x: 'Nov 24', y: 27 },
+      { x: 'Nov 25', y: 30 },
+      { x: 'Nov 26', y: 25 },
+      { x: 'Nov 27', y: 20 },
+      { x: 'Nov 28', y: 15 },
+      { x: 'Nov 29', y: 10 },
+      { x: 'Nov 30', y: 10 },
+    ],
   };
 };
 

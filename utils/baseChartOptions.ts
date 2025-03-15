@@ -1,6 +1,6 @@
 export const baseChartOptions = {
   chart: {
-    height: 400,
+    height: 225,
     toolbar: {
       show: false
     },
@@ -17,26 +17,28 @@ export const baseChartOptions = {
       format: 'dd MMMM yyyy'
     },
     style: {
-      fontSize: '14px'
+      fontSize: '12px'
     },
     fixed: {
       enabled: true,
       position: 'topRight',
     }
   },
-  colors: ['#19aa6e'],
+  colors: ['#4CBD8E'],
   dataLabels: {
     enabled: false
   },
+  stroke: {
+    width: 3,
+  },
   xaxis: {
     type: 'category',
-    tickAmount: 3,
-    show: false,
+    tickAmount: 10,
     labels: {
       style: {
-        colors: 'black',
-        fontWeight: 600,
-        fontSize: '13px'
+        colors: '#8C8989',
+        fontWeight: 400,
+        fontSize: '12px'
       },
       datetimeFormatter: {
         year: 'yyyy',
@@ -55,34 +57,21 @@ export const baseChartOptions = {
   yaxis: {
     labels: {
       style: {
-        colors: 'black',
-        fontWeight: 700,
-        fontSize: '14px'
+        colors: '#8C8989',
+        fontWeight: 400,
+        fontSize: '12px'
       }
     }
   },
   legend: {
-    fontSize: '14px',
-    fontWeight: 700,
+    fontSize: '12px',
+    fontWeight: 400,
     labels: {
       colors: '#19aa6e'
     }
   },
-  grid: {
-    show: false
+  markers: {
+    size: 4,
+    colors: ['#284028'],
   },
-  fill: {
-    type: 'gradient',
-    gradient: {
-      shade: 'dark',
-      type: 'vertical',
-      shadeIntensity: 0.4,
-      gradientToColors: ['#98f5ce','#40f7ab','#19aa6e'],
-      inverseColors: false,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 50, 100],
-      colorStops: []
-    }
-  }
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Info } from "lucide-react"; // Using Lucide for the info icon
+import { Info } from "lucide-react";
 import styles from "../../styles/AnalyticAddToolTip.module.css";
 
 export function AddToolTip() {
