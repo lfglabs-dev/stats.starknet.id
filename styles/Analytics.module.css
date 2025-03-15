@@ -1,0 +1,57 @@
+.analyticsWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: -2;
+    overflow: auto;
+  }
+
+.pageContainer {
+    width: 100%;
+    max-width: 1280px;
+    margin: 20px auto;
+    padding: 24px 10px;
+    background-color: transparent !important;
+    min-height: calc(100vh - 64px); /* Adjust based on your navbar height */
+  }
+  
+  .statsRow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .statsRow {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Add background palms effect if needed */
+  .pageContainer::before,
+  .pageContainer::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    width: 300px;
+    height: 400px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  .pageContainer::before {
+    left: -20px;
+    background-image: url('/images/palm-left.png'); /* Replace with your actual image path */
+  }
+  
+  .pageContainer::after {
+    right: 0;
+    background-image: url('/images/palm-right.png'); /* Replace with your actual image path */
+  }
