@@ -12,6 +12,7 @@ import {
   getPeriodInformation,
   getPeriodInformationForStats,
 } from "../utils/period";
+import { AddToolTip } from "./AddToolTip";
 
 const PERIOD_INFORMATION_FOR_STATS = getPeriodInformationForStats();
 
@@ -79,6 +80,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <MainStatCards period={period} periodRange={currentPeriodRange} />
+          <AddToolTip />
           <ChartsSection period={period} periodRange={periodRangeForCharts} />
         </div>
       </div>
