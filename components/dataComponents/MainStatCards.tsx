@@ -7,6 +7,7 @@ import {
   useGetUniqueAddresses,
 } from "../../hooks/metrics";
 import { AdvancedStatCard } from "../cards/AdvancedStatCard";
+import SubdomainCard from "../cards/SubdomainCard";
 
 interface MainStatCardsProps {
   period: Period;
@@ -52,22 +53,7 @@ export const MainStatCards: FC<MainStatCardsProps> = ({
         progressDescription={`Since ${periodName}`}
         icon="/icons/connexionIcon.svg"
       />
-      <AdvancedStatCard
-        title="Identities created"
-        statValue={identitiesCreated}
-        isLoading={identitiesIsLoading}
-        progress={"0%"}
-        progressDescription={`Since ${periodName}`}
-        icon="/icons/webIdentitiesIcon.svg"
-      />
-      <AdvancedStatCard
-        title="Unique addresses"
-        statValue={uniqueAddresses}
-        isLoading={uniqueAddressIsLoading}
-        progress={"0%"}
-        progressDescription={`Since ${periodName}`}
-        icon="/icons/crownIcon.svg"
-      />
+      <SubdomainCard count={28145} />
     </div>
   );
 };
