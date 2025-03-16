@@ -5,6 +5,7 @@ import React, { FC, useCallback, useMemo, useState } from 'react';
 import style from '../../styles/Chart.module.css';
 import { Range } from '../../types/metrics';
 import { FilterButton } from '../buttons/FilterButton';
+import TimeFilter from '../buttons/TimeFilterButton';
 
 interface ChartProps {
   title: string;
@@ -51,11 +52,7 @@ export const Chart: FC<ChartProps> = ({ series, formatter, customOptions, title 
     <div className={style.container}>
       <div className={style.header}>
         <p className={style.title}>{title}</p>
-        <FilterButton<Range>
-          value={range}
-          possibleValues={rangeValues}
-          onChange={handleRangeChange}
-        />
+        <TimeFilter onFilterChange={handleRangeChange} />
       </div>
       <div className={style.widget}>
         <div className={style.chartWrapper}>

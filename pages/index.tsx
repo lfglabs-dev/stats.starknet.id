@@ -12,6 +12,7 @@ import {
   getPeriodInformation,
   getPeriodInformationForStats,
 } from "../utils/period";
+import SubdomainCard from "../components/cards/SubdomainCard";
 
 const PERIOD_INFORMATION_FOR_STATS = getPeriodInformationForStats();
 
