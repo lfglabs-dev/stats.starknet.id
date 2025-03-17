@@ -12,7 +12,6 @@ import {
   getPeriodInformation,
   getPeriodInformationForStats,
 } from "../utils/period";
-import SubdomainCard from "../components/cards/SubdomainCard";
 
 const PERIOD_INFORMATION_FOR_STATS = getPeriodInformationForStats();
 
@@ -80,6 +79,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <MainStatCards period={period} periodRange={currentPeriodRange} />
+
           <ChartsSection period={period} periodRange={periodRangeForCharts} />
         </div>
       </div>
