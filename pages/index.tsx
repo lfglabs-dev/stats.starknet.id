@@ -54,7 +54,7 @@ const Home: NextPage = () => {
     Period.YEARLY,
   ];
 
-  const rangeValues = [Range["30D"], Range["90D"], Range["180D"], Range.ALL];
+  const rangeValues = [Range["7D"], Range["1m"], Range["Ytd"], Range.ALL];
 
   return (
     <div className={styles.column}>
@@ -79,6 +79,7 @@ const Home: NextPage = () => {
             </div>
           </div>
           <MainStatCards period={period} periodRange={currentPeriodRange} />
+
           <ChartsSection period={period} periodRange={periodRangeForCharts} />
         </div>
       </div>

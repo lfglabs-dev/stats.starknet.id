@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import createEmotionCache from "../src/createEmotionCache";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
+import { useRouter } from "next/router";
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
@@ -20,6 +21,10 @@ const App: FC<MyAppProps> = ({
   emotionCache = clientSideEmotionCache,
 }) => {
   const queryClient = new QueryClient();
+  const router = useRouter();
+
+  const noNavbarRoutes = ['/analytics'];
+  const showNavbar = !noNavbarRoutes.includes(router.pathname);
 
   return (
     <CacheProvider value={emotionCache}>
@@ -28,7 +33,7 @@ const App: FC<MyAppProps> = ({
         <Head>
           <title>Dashboard.Starknet.id</title>
         </Head>
-        <Navbar />
+        {showNavbar && <Navbar />}
         <Component className="relative" {...pageProps} />
       </QueryClientProvider>
     </CacheProvider>
