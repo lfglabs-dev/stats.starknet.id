@@ -1,5 +1,5 @@
 .card {
-  margin: 1rem;
+  margin: 1rem 0 1rem 1rem;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
@@ -15,7 +15,7 @@
 
 .title {
   font-size: 0.875rem;
-  color: #8C8989;
+  color: var(--gray-800);
   font-family: "Poppins", sans-serif;
 }
 

@@ -6,8 +6,6 @@ interface StatCardProps {
   title: string;
   statValue: number;
   isLoading?: boolean;
-  progress?: string;
-  progressDescription?: string;
   icon?: string;
 }
 
@@ -15,8 +13,6 @@ export const AdvancedStatCard: FC<StatCardProps> = ({
   title,
   statValue,
   isLoading,
-  progress,
-  progressDescription,
   icon = "/icons/infoIcon.png",
 }) => {
   return (
@@ -31,14 +27,6 @@ export const AdvancedStatCard: FC<StatCardProps> = ({
         ) : (
           <>
             <p className={style.valueLabel}>{statValue}</p>
-            {/* <span
-              className={`${style.progress} ${
-                progress?.startsWith("-") && style.negative
-              }`}
-            >
-              {progress}
-            </span>
-            <label className={style.progressLabel}>{progressDescription}</label> */}
           </>
         )}
       </div>
