@@ -46,12 +46,9 @@ export const MainStatCards: FC<MainStatCardsProps> = ({
   return (
     <div className={styles.row}>
       <AdvancedStatCard
-        title="Domains created"
+        title="Total Domains"
         statValue={domainsCreated}
         isLoading={domainIsLoading}
-        progress={"0%"}
-        progressDescription={`Since ${periodName}`}
-        icon="/icons/connexionIcon.svg"
       />
       <SubdomainCard count={28145} />
     </div>
