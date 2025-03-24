@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0 1rem 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  min-height: 140px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(140, 137, 137, 1);
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.countContainer {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.valueLabel {
+  font-family: "QuickZap";
+  font-size: 30px;
+  color: #454545;
+}
+
+.loader {
+  color: var(--green);
+}
+
+.icon {
+  margin-left: auto;
+  width: 12px;
+  height: 12px;
+}
+
+.tooltipWrapper {
+  position: relative;
+}
+
+.infoIcon {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+
+.tooltipBox {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 10px;
+  width: 210px;
+  background-color: #402d28;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  max-height: 200px;
+}
+
+.tooltipText {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 25px;
+  letter-spacing: 1px;
+}
+
+.progress {
+  color: var(--green);
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.progress.negative {
+  color: #d21313;
+}
+
+@media (max-width: 1360px) {
+  .card {
+    padding: 1rem;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1360px) {
+  .valueLabel {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 16px;
+    min-height: 120px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .valueLabel {
+    font-size: 36px;
+  }
+}
