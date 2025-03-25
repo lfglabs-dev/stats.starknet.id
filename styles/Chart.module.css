@@ -54,6 +54,7 @@
   position: relative;
   width: 200px;
   margin-top: 10px;
+  z-index: 99999;
 }
 
 .tooltipCon{
@@ -129,6 +130,8 @@
 .your-custom-tooltip-class {
   z-index: 10 !important;
 }
+
+
 
 @media (max-width: 1360px) {
   .title {

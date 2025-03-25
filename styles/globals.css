@@ -54,7 +54,7 @@ a {
   display: inline-block;
   box-shadow: 7px 7px 20px 0px black;
   outline: none;
-}
+}z
 
 * {
   box-sizing: border-box;
@@ -106,4 +106,7 @@ a {
     color: var(--brown);
     background: var(--beige);
   }
+}
+.apexcharts-xaxistooltip {
+  display: none !important;
 }

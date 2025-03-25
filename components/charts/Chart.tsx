@@ -76,12 +76,12 @@ export const Chart: FC<ChartProps> = ({
           formatter
         }
       },
-      
-      ...tooltipConfig,
+      // Completely replace any tooltip config from baseChartOptions
+      tooltip: tooltipConfig.tooltip,
       ...customOptions
     }
   }), [series, formatter, customOptions, tooltipConfig]);
-
+  
   return (
     <div className={style.container}>
       <div className={style.header}>

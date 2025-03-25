@@ -1,3 +1,4 @@
+// Tooltip.ts - Update your custom tooltip to include the data-custom-tooltip attribute
 import style from '../../styles/Chart.module.css';
 
 interface TooltipData {
@@ -21,7 +22,7 @@ export const generateCustomTooltip = (props: CustomTooltipProps): string => {
   });
   
   return `
-    <div class="${style.tooltip}">
+    <div class="${style.tooltip}" data-custom-tooltip="true">
       <div class="${style.tooltipHeader}">${date}</div>
       <div class="${style.tooltipContent}">
         ${Object.entries(dateData).map(([key, val]) => `
@@ -40,6 +41,13 @@ export const getTooltipConfig = (domainData: TooltipData) => ({
   tooltip: {
     enabled: true,
     shared: true,
+    enabledOnSeries: false,
+    onDatasetHover: {
+      highlightDataSeries: false,
+  },
+  marker: {
+    show: true,
+},
     custom: function({ dataPointIndex, w }: { dataPointIndex: number; w: any }) {
       return generateCustomTooltip({ dataPointIndex, w, domainData });
     },
@@ -60,24 +68,5 @@ export const getTooltipConfig = (domainData: TooltipData) => ({
         formatter: () => '',
       },
     },
-    marker: {
-      show: false,
-    },
-    onDatasetHover: {
-      highlightDataSeries: true,
-    },
-    // Add these properties for styling
-    style: {
-      fontSize: '0px', // Make the text invisible
-      fontFamily: 'inherit',
-      cssClass: 'hidden-tooltip'
-    },
-    // Add custom CSS to your stylesheet
-    cssClass: 'hidden-tooltip',
-    // Add z-index
-    z: -1
   }
 });
-
-
-
