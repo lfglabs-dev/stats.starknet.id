@@ -52,6 +52,7 @@ export const MainStatCards: FC<MainStatCardsProps> = ({
         progress={"0%"}
         progressDescription={`Since ${periodName}`}
         icon="/icons/connexionIcon.svg"
+        tooltipText="Total number of domain names registered on Starknet ID since launch"
       />
       <SubdomainCard count={28145} />
     </div>
