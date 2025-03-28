@@ -90,7 +90,6 @@ export const getPeriodInformationForStats = (): Record<Period, PeriodRange> => {
     },
   };
 };
-
 export const computeTimestampWithRange = (
   currentTimestamp: number,
   range: Range
@@ -102,20 +101,23 @@ export const computeTimestampWithRange = (
         timestamp: currentTimestamp - 7 * 24 * 60 * 60,
         date: new Date(today.minusDays(7).toString()),
       };
-    case Range["30D"]:
+    case Range["1m"]:
       return {
         timestamp: currentTimestamp - 30 * 24 * 60 * 60,
         date: new Date(today.minusDays(30).toString()),
       };
-    case Range["90D"]:
+    case Range.Ytd:
       return {
-        timestamp: currentTimestamp - 90 * 24 * 60 * 60,
-        date: new Date(today.minusDays(90).toString()),
-      };
-    case Range["180D"]:
-      return {
-        timestamp: currentTimestamp - 180 * 24 * 60 * 60,
-        date: new Date(today.minusDays(180).toString()),
+        timestamp:
+          currentTimestamp -
+          daysBetween(
+            new Date(today.toString()),
+            new Date(today.withMonth(1).withDayOfMonth(1).toString())
+          ) *
+            24 *
+            60 *
+            60,
+        date: new Date(today.withMonth(1).withDayOfMonth(1).toString()),
       };
     case Range.ALL:
       return {

@@ -17,7 +17,7 @@ const PERIOD_INFORMATION_FOR_STATS = getPeriodInformationForStats();
 
 const Home: NextPage = () => {
   const [period, setPeriod] = useState<Period>(Period.MONTHLY);
-  const [range, setRange] = useState<Range>(Range["7D"]);
+  const [range, setRange] = useState<Range>(Range["1m"]);
 
   const periodRangeForCharts = useMemo(() => {
     return getPeriodInformation(range);
