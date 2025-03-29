@@ -1,5 +1,5 @@
 import { CircularProgress } from "@mui/material";
-import { FC, ReactNode } from "react";
+import { FC, useState } from "react";
 import style from "../../styles/AdvancedStatCard.module.css";
 
 interface StatCardProps {
@@ -15,6 +15,7 @@ export const AdvancedStatCard: FC<StatCardProps> = ({
   isLoading,
   icon = "/icons/infoIcon.png",
 }) => {
+  const [showTooltip, setShowTooltip] = useState(false);
   return (
     <div className={style.card}>
       <div className="flex flex-col justify-between w-full gap-3">
