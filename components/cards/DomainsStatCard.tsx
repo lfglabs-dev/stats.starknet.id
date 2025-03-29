@@ -1,5 +1,5 @@
 import { CircularProgress } from "@mui/material";
-import { Info } from "lucide-react";
+import Image from "next/image";
 import { FC, ReactNode, useState } from "react";
 import styles from "../../styles/DomainsStatCard.module.css";
 
@@ -7,7 +7,6 @@ interface StatCardProps {
   title: string;
   statValue: number | string;
   isLoading?: boolean;
-  icon?: string | ReactNode;
   tooltip?: string;
   customClass?: string;
 }
@@ -16,7 +15,6 @@ const DomainsStatCard: FC<StatCardProps> = ({
   title,
   statValue,
   isLoading = false,
-  icon,
   tooltip,
   customClass = "",
 }) => {
@@ -34,7 +32,13 @@ const DomainsStatCard: FC<StatCardProps> = ({
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
             >
-              <Info className={styles.infoIcon} />
+              <Image
+                src="/icons/infoIcon.png"
+                alt="info"
+                width={20}
+                height={20}
+                className={styles.infoIcon}
+              />
               {showTooltip && (
                 <div className={styles.tooltipBox}>
                   <p className={styles.tooltipText}>{tooltip}</p>
@@ -42,7 +46,13 @@ const DomainsStatCard: FC<StatCardProps> = ({
               )}
             </div>
           ) : (
-            <Info className={styles.infoIcon} />
+            <Image
+              src="/icons/infoIcon.png"
+              alt="info"
+              width={20}
+              height={20}
+              className={styles.infoIcon}
+            />
           )}
         </div>
 
