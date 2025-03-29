@@ -42,6 +42,97 @@
   color: var(--gray-600);
 }
 
+/* Updated tooltip styles that match the example image */
+.tooltip {
+  background: #2d2d2d;
+  border-radius: 6px; 
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+  border: none;
+  position: relative;
+  width: 200px;
+  margin-top: 10px;
+  z-index: 99999;
+}
+
+.tooltipCon{
+  z-index: 1000;
+}
+
+.tooltipHeader {
+  background: #381717;
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tooltipContent {
+  padding: 5px 0;
+  background-color: #fff;
+}
+
+.tooltipRow {
+  display: flex;
+  align-items: center;
+  padding: 0px 12px;
+  color: #fff;
+  font-size: 12px;
+  justify-content: space-between;
+}
+
+.tooltipDot {
+  margin-right: 6px;
+  font-size: 15px;
+  color: black;
+}
+
+.tooltipLabel {
+  flex-grow: 1;
+  text-align: left;
+  font-weight: normal;
+  color: #343434;
+}
+
+.tooltipValue {
+  font-weight: 500;
+  margin-right: auto;
+  color: #2d2d2d;
+}
+
+/*  this class is to create a transparent container for the tooltip */
+.chartWrapper [class*="apexcharts-tooltip"] {
+  opacity: 1 !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.chartWrapper [class*="apexcharts-tooltip-series-group"] {
+  background-color: transparent !important;
+}
+.custom-marker-pointer {
+  cursor: pointer !important;
+}
+
+.hidden-tooltip {
+  z-index: -1 !important;
+  opacity: 0 !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  pointer-events: none !important;
+}
+
+/* Make sure your custom tooltip has a higher z-index */
+.your-custom-tooltip-class {
+  z-index: 10 !important;
+}
+
+
+
 @media (max-width: 1360px) {
   .title {
     font-size: 1.1rem;
