@@ -1,5 +1,6 @@
 import { CircularProgress } from "@mui/material";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useState } from "react";
+import { Info } from "lucide-react";
 import style from "../../styles/AdvancedStatCard.module.css";
 
 interface StatCardProps {
@@ -9,6 +10,7 @@ interface StatCardProps {
   progress?: string;
   progressDescription?: string;
   icon: string;
+  tooltipText: string;
 }
 
 export const AdvancedStatCard: FC<StatCardProps> = ({
@@ -18,7 +20,9 @@ export const AdvancedStatCard: FC<StatCardProps> = ({
   progress,
   progressDescription,
   icon,
+  tooltipText
 }) => {
+  const [showTooltip, setShowTooltip] = useState(false);
   return (
     <div className={style.card}>
       <div className={style.text}>
@@ -39,7 +43,23 @@ export const AdvancedStatCard: FC<StatCardProps> = ({
           </>
         )}
       </div>
-      <img src={icon} alt="icon" className={style.icon} />
+      <div className={style.illustrations}>
+        <div
+            className={style.tooltipWrapper}
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+          >
+            <Info className={style.infoIcon} />
+            {showTooltip && (
+              <div className={style.tooltipBox}>
+                <p className={style.tooltipText}>
+                  {tooltipText}
+                </p>
+              </div>
+            )}
+          </div>
+          <img src={icon} alt="icon" className={style.icon} />
+        </div>
     </div>
   );
 };
