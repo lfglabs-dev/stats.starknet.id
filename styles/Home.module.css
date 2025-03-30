@@ -108,31 +108,22 @@
 
 .bottomLeftLeaf {
   position: absolute;
-  width: 350px;
+  left: 0px;
+  bottom: 0px;
+  width: 20vw;
+  max-width: 500px;
   z-index: -1000;
-  bottom: -20%;
-
-  z-index: -1000;
+  pointer-events: none;
 }
 
 .bottomRightLeaf {
   position: absolute;
-  bottom: -20%;
-  right: -70px;
-  width: 400px;
+  right: -10px;
+  bottom: 0px;
+  width: 25vw;
+  max-width: 500px;
   z-index: -1000;
-  overflow: hidden;
-  top: -20%;
-}
-.starknet {
-  position: absolute;
-  top: 170px;
-  right: 77%;
-  transform: translateX(-50%);
-  width: auto;
-  height: auto;
-  max-width: 50px;
-  z-index: -1;
+  pointer-events: none;
 }
 
 @media (max-width: 1360px) {

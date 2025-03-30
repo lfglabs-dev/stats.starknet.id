@@ -19,6 +19,12 @@ export const AdvancedStatCard: FC<StatCardProps> = ({
   const [showTooltip, setShowTooltip] = useState(false);
   return (
     <div className={style.card}>
+      <img
+        className={style.starknetLogo}
+        src="/icons/starknet.png"
+        alt="StarkNet Logo"
+      />
+
       <div className="flex flex-col justify-between w-full gap-2">
         <div className="flex justify-between items-center w-full">
           <h3 className={style.title}>{title}</h3>
