@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
 .card {
   margin: 1rem 0 1rem 1rem;
   padding: 1.5rem;
@@ -12,73 +14,47 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   align-items: center;
   justify-content: space-between;
-  position: relative;
 }
-
 .title {
-  font-size: 0.875rem;
-  color: var(--gray-800);
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(140, 137, 137, 1);
+  margin: 0;
   font-family: "Poppins", sans-serif;
 }
 
-.subtitle {
-  font-size: 1rem;
-  color: var(--gray-700);
-  font-weight: 600;
+.countContainer {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .valueLabel {
   font-family: "QuickZap";
   font-size: 30px;
-  color: var(--gray);
+  color: #454545;
 }
 
 .loader {
   color: var(--green);
 }
 
-@media (max-width: 1360px) {
-  .card {
-    padding: 1rem;
-    width: calc(100% - 2rem);
-    margin: 1rem;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1360px) {
-  .subtitle {
-    font-size: 1.1rem;
-  }
-
-  .valueLabel {
-    font-size: 2em;
-  }
-}
 .icon {
   margin-left: auto;
   width: 12px;
   height: 12px;
 }
 
-.progress {
-  color: var(--green);
-  margin-right: 10px;
-  font-weight: 600;
-}
-
-.progress.negative {
-  color: #d21313;
-}
 .tooltipWrapper {
   position: relative;
 }
 
-.tooltipIcon {
-  width: 18px;
-  height: 18px;
-  color: black;
+.infoIcon {
+  width: 12px;
+  height: 12px;
   cursor: pointer;
 }
+
 .tooltipBox {
   position: absolute;
   right: 0;
@@ -91,6 +67,7 @@
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 50;
+  max-height: 200px;
 }
 
 .tooltipText {
@@ -100,24 +77,42 @@
   line-height: 25px;
   letter-spacing: 1px;
 }
-.flexBetween {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.illustrations {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 20px;
-}
-.starknetLogo {
-  position: absolute;
-  top: -10px;
-  left: -25px;
-  width: 50px;
-  height: auto;
 
-  z-index: -1;
+.progress {
+  color: var(--green);
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.progress.negative {
+  color: #d21313;
+}
+
+@media (max-width: 1360px) {
+  .card {
+    padding: 1rem;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1360px) {
+  .valueLabel {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 16px;
+    min-height: 120px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .valueLabel {
+    font-size: 36px;
+  }
 }
