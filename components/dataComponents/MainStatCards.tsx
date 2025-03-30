@@ -1,13 +1,13 @@
 import { FC } from "react";
-import { Period, PeriodRange } from "../../types/metrics";
-import styles from "../../styles/Home.module.css";
 import {
   useGetDomains,
   useGetIdentities,
   useGetUniqueAddresses,
 } from "../../hooks/metrics";
+import styles from "../../styles/Home.module.css";
+import { Period, PeriodRange } from "../../types/metrics";
+import DomainsStatCard from "../cards/DomainsStatCard";
 import { AdvancedStatCard } from "../cards/AdvancedStatCard";
-import SubdomainCard from "../cards/SubdomainCard";
 
 interface MainStatCardsProps {
   period: Period;
@@ -46,15 +46,17 @@ export const MainStatCards: FC<MainStatCardsProps> = ({
   return (
     <div className={styles.row}>
       <AdvancedStatCard
-        title="Domains created"
+        title="Total Domains"
         statValue={domainsCreated}
         isLoading={domainIsLoading}
-        progress={"0%"}
-        progressDescription={`Since ${periodName}`}
-        icon="/icons/connexionIcon.svg"
         tooltipText="Total number of domain names registered on Starknet ID since launch"
       />
-      <SubdomainCard count={28145} />
+      <DomainsStatCard
+        title="Subdomains"
+        statValue={28145}
+        isLoading={domainIsLoading}
+        tooltip="Total number of subdomains created from main domains (including Argent, Braavos, OG, Everai, and others)"
+      />
     </div>
   );
 };
