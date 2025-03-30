@@ -7,6 +7,7 @@ import {
 import styles from "../../styles/Home.module.css";
 import { Period, PeriodRange } from "../../types/metrics";
 import DomainsStatCard from "../cards/DomainsStatCard";
+import { AdvancedStatCard } from "../cards/AdvancedStatCard";
 
 interface MainStatCardsProps {
   period: Period;
@@ -44,10 +45,11 @@ export const MainStatCards: FC<MainStatCardsProps> = ({
 
   return (
     <div className={styles.row}>
-      <DomainsStatCard
+      <AdvancedStatCard
         title="Total Domains"
         statValue={domainsCreated}
         isLoading={domainIsLoading}
+        tooltipText="Total number of domain names registered on Starknet ID since launch"
       />
       <DomainsStatCard
         title="Subdomains"

@@ -1,27 +1,45 @@
 import { CircularProgress } from "@mui/material";
-import { FC, useState } from "react";
+import { FC, ReactNode, useState } from "react";
+import { Info } from "lucide-react";
 import style from "../../styles/AdvancedStatCard.module.css";
 
 interface StatCardProps {
   title: string;
   statValue: number;
   isLoading?: boolean;
-  icon?: string;
+  tooltipText: string;
 }
 
 export const AdvancedStatCard: FC<StatCardProps> = ({
   title,
   statValue,
   isLoading,
-  icon = "/icons/infoIcon.png",
+  tooltipText,
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   return (
     <div className={style.card}>
-      <div className="flex flex-col justify-between w-full gap-3">
+      <div className="flex flex-col justify-between w-full gap-2">
         <div className="flex justify-between items-center w-full">
           <h3 className={style.title}>{title}</h3>
-          <img src={icon} alt="icon" className={style.icon} />
+          <div className={style.illustrations}>
+            <div
+              className={style.tooltipWrapper}
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+            >
+              <img
+                src="/icons/infoIcon.png"
+                alt="icon"
+                className={style.icon}
+              />
+              {showTooltip && (
+                <div className={style.tooltipBox}>
+                  <p className={style.tooltipText}>{tooltipText}</p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         {isLoading ? (
           <CircularProgress className={style.loader} />
