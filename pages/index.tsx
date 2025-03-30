@@ -78,6 +78,7 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
+
           <MainStatCards period={period} periodRange={currentPeriodRange} />
 
           <ChartsSection period={period} periodRange={periodRangeForCharts} />
@@ -89,10 +90,10 @@ const Home: NextPage = () => {
       </div>
       <div className={styles.section3}>
         <div className={styles.bottomLeftLeaf}>
-          <img width="100%" alt="leaf" src="/assets/leavesGroup02.svg" />
+          <img width="100%" alt="leaf" src="/images/palm-left.png" />
         </div>
         <div className={styles.bottomRightLeaf}>
-          <img width="100%" alt="leaf" src="/assets/leavesGroup01.svg" />
+          <img width="100%" alt="leaf" src="/images/palm-right.png" />
         </div>
         <ExpiredDomainsTable />
       </div>

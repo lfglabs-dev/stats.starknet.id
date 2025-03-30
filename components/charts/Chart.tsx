@@ -80,7 +80,7 @@ export const Chart: FC<ChartProps> = ({
       tooltip: tooltipConfig.tooltip,
       ...customOptions
     }
-  }), [series, formatter, customOptions, tooltipConfig]);
+  }), [series, formatter, customOptions, tooltipConfig, enhancedMarkers]);
   
   return (
     <div className={style.container}>

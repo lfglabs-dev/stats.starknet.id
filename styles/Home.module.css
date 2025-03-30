@@ -102,17 +102,28 @@
   width: 350px;
   z-index: -1000;
   bottom: -20%;
-  left: -100px;
+  /* left: -100px; */
   z-index: -1000;
 }
 
 .bottomRightLeaf {
   position: absolute;
   bottom: -20%;
-  right: -80px;
-  width: 220px;
+  right: -70px;
+  width: 400px;
   z-index: -1000;
   overflow: hidden;
+  top: -20%;
+}
+.starknet {
+  position: absolute;
+  top: 170px;
+  right: 77%;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+  max-width: 50px;
+  z-index: -1;
 }
 
 @media (max-width: 1360px) {
