@@ -48,10 +48,10 @@
 
 .pageContainer::before {
   left: -20px;
-  background-image: url("/images/palm-left.png"); /* Replace with your actual image path */
+  background-image: url("/images/palm-left.png");
 }
 
 .pageContainer::after {
   right: 0;
-  background-image: url(""); /* Replace with your actual image path */
+  background-image: url("/images/palm-right.png");
 }
